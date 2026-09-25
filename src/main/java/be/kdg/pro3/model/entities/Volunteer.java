@@ -1,6 +1,8 @@
 package be.kdg.pro3.model.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Volunteer {
     private Long id;
@@ -10,6 +12,8 @@ public class Volunteer {
     private LocalDate birthDate;
     private boolean isStudent;
     private String avatarUrl;
+
+    private List<Event> events = new ArrayList<>();
 
     public Volunteer() {
     }
@@ -24,59 +28,53 @@ public class Volunteer {
         this.avatarUrl = avatarUrl;
     }
 
-    public Long getId() {
-        return id;
+    // M:N — connect this volunteer to an event (sets both sides)
+    public void addEvent(Event event) {
+        this.events.add(event);
+        event.addVolunteer(this);
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public LocalDate getBirthDate() {
         return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     public boolean isStudent() {
         return isStudent;
     }
 
-    public void setStudent(boolean student) {
-        isStudent = student;
-    }
-
     public String getAvatarUrl() {
         return avatarUrl;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    @Override
+    public String toString() {
+        return "Volunteer{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", birthDate=" + birthDate +
+                ", isStudent=" + isStudent +
+                ", events=" + events.size() +
+                '}';
     }
 }

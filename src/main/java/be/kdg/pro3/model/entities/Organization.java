@@ -1,6 +1,8 @@
 package be.kdg.pro3.model.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Organization {
     private Long id;
@@ -9,6 +11,8 @@ public class Organization {
     private double averageRating;
     private boolean isVerified;
     private String logoUrl;
+
+    private List<Event> events = new ArrayList<>();
 
     public Organization() {
     }
@@ -22,36 +26,26 @@ public class Organization {
         this.logoUrl = logoUrl;
     }
 
-    public Long getId() {
-        return id;
+    // 1:N — add an Event to this Organization (sets both sides)
+    public void addEvent(Event event) {
+        this.events.add(event);
+        event.setOrganization(this);
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public LocalDate getFoundedDate() {
         return foundedDate;
     }
 
-    public void setFoundedDate(LocalDate foundedDate) {
-        this.foundedDate = foundedDate;
-    }
-
     public double getAverageRating() {
         return averageRating;
-    }
-
-    public void setAverageRating(double averageRating) {
-        this.averageRating = averageRating;
     }
 
     public boolean isVerified() {
@@ -62,11 +56,18 @@ public class Organization {
         return logoUrl;
     }
 
-    public void setLogoUrl(String logoUrl) {
-        this.logoUrl = logoUrl;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void setVerified(boolean verified) {
-        isVerified = verified;
+    @Override
+    public String toString() {
+        return "Organization{" +
+                "name='" + name + '\'' +
+                ", foundedDate=" + foundedDate +
+                ", averageRating=" + averageRating +
+                ", isVerified=" + isVerified +
+                ", events=" + events.size() +
+                '}';
     }
 }

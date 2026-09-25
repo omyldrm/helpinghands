@@ -1,18 +1,20 @@
 package be.kdg.pro3.model.entities;
 
-import jdk.jfr.Category;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Event {
     private Long id;
     private String title;
     private LocalDate eventDate;
-    private EventCategory category;
     private int maxVolunteers;
+    private EventCategory category;
     private Status status;
     private String bannerUrl;
 
+    private Organization organization;
+    private List<Volunteer> volunteers = new ArrayList<>();
 
     public Event() {
     }
@@ -27,71 +29,62 @@ public class Event {
         this.bannerUrl = bannerUrl;
     }
 
-    public Long getId() {
-        return id;
+    // called by Organization.addEvent (1:N side)
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    // called by Volunteer.addEvent (M:N side)
+    public void addVolunteer(Volunteer volunteer) {
+        this.volunteers.add(volunteer);
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public LocalDate getEventDate() {
         return eventDate;
-    }
-
-    public void setEventDate(LocalDate eventDate) {
-        this.eventDate = eventDate;
     }
 
     public int getMaxVolunteers() {
         return maxVolunteers;
     }
 
-    public void setMaxVolunteers(int maxVolunteers) {
-        this.maxVolunteers = maxVolunteers;
+    public EventCategory getCategory() {
+        return category;
     }
 
     public Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     public String getBannerUrl() {
         return bannerUrl;
     }
 
-    public void setBannerUrl(String bannerUrl) {
-        this.bannerUrl = bannerUrl;
+    public Organization getOrganization() {
+        return organization;
     }
 
-    public EventCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(EventCategory category) {
-        this.category = category;
+    public List<Volunteer> getVolunteers() {
+        return volunteers;
     }
 
     @Override
     public String toString() {
         return "Event{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 ", eventDate=" + eventDate +
                 ", maxVolunteers=" + maxVolunteers +
+                ", category=" + category +
                 ", status=" + status +
-                ", bannerUrl='" + bannerUrl + '\'' +
+                ", organization=" + (organization != null ? organization.getName() : "none") +
+                ", volunteers=" + volunteers.size() +
                 '}';
     }
 }

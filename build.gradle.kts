@@ -3,6 +3,10 @@ plugins {
     id("application")
 }
 
+application {
+    mainClass.set("be.kdg.pro3.Main")
+}
+
 group = "be.kdg.pro3"
 version = "1.0-SNAPSHOT"
 
