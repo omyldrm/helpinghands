@@ -19,13 +19,14 @@ public class Volunteer {
     }
 
     public Volunteer(String firstName, String lastName, String email,
-                     LocalDate birthDate, boolean isStudent, String avatarUrl) {
+                     LocalDate birthDate, boolean isStudent, String avatarUrl, long id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.birthDate = birthDate;
         this.isStudent = isStudent;
         this.avatarUrl = avatarUrl;
+        this.id = id;
     }
 
     // M:N — connect this volunteer to an event (sets both sides)
@@ -68,13 +69,9 @@ public class Volunteer {
 
     @Override
     public String toString() {
-        return "Volunteer{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", birthDate=" + birthDate +
-                ", isStudent=" + isStudent +
-                ", events=" + events.size() +
-                '}';
+        return String.format("Volunteer #%d: %s %s | %s | born %s | %s | events: %d",
+                id, firstName, lastName, email, birthDate,
+                isStudent ? "student" : "not a student",
+                events.size());
     }
 }

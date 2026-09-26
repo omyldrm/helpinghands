@@ -12,6 +12,7 @@ public class Event {
     private EventCategory category;
     private Status status;
     private String bannerUrl;
+    private String location;
 
     private Organization organization;
     private List<Volunteer> volunteers = new ArrayList<>();
@@ -19,14 +20,15 @@ public class Event {
     public Event() {
     }
 
-    public Event(String title, LocalDate eventDate, int maxVolunteers,
-                 EventCategory category, Status status, String bannerUrl) {
+    public Event(String title, LocalDate eventDate, int maxVolunteers, EventCategory category, Status status, String bannerUrl, Long id, String location) {
         this.title = title;
         this.eventDate = eventDate;
         this.maxVolunteers = maxVolunteers;
         this.category = category;
         this.status = status;
         this.bannerUrl = bannerUrl;
+        this.id = id;
+        this.location = location;
     }
 
     // called by Organization.addEvent (1:N side)
@@ -75,16 +77,15 @@ public class Event {
         return volunteers;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
     @Override
     public String toString() {
-        return "Event{" +
-                "title='" + title + '\'' +
-                ", eventDate=" + eventDate +
-                ", maxVolunteers=" + maxVolunteers +
-                ", category=" + category +
-                ", status=" + status +
-                ", organization=" + (organization != null ? organization.getName() : "none") +
-                ", volunteers=" + volunteers.size() +
-                '}';
+        return String.format("Event #%d: %s | %s | %s | %s | org: %s | volunteers: %d/%d",
+                id, title, eventDate, category, status,
+                organization != null ? organization.getName() : "none",
+                volunteers.size(), maxVolunteers);
     }
 }

@@ -18,12 +18,13 @@ public class Organization {
     }
 
     public Organization(String name, LocalDate foundedDate, double averageRating,
-                        boolean isVerified, String logoUrl) {
+                        boolean isVerified, String logoUrl, Long id) {
         this.name = name;
         this.foundedDate = foundedDate;
         this.averageRating = averageRating;
         this.isVerified = isVerified;
         this.logoUrl = logoUrl;
+        this.id = id;
     }
 
     // 1:N — add an Event to this Organization (sets both sides)
@@ -60,14 +61,12 @@ public class Organization {
         return events;
     }
 
+
     @Override
     public String toString() {
-        return "Organization{" +
-                "name='" + name + '\'' +
-                ", foundedDate=" + foundedDate +
-                ", averageRating=" + averageRating +
-                ", isVerified=" + isVerified +
-                ", events=" + events.size() +
-                '}';
+        return String.format("Organization #%d: %s | founded %s | rating %.1f | %s | events: %d",
+                id, name, foundedDate, averageRating,
+                isVerified ? "verified" : "not verified",
+                events.size());
     }
 }
