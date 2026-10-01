@@ -83,7 +83,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return String.format("Event #%d: %s | %s | %s | %s | org: %s | volunteers: %d/%d",
+        return String.format("Event #%d: %s | %s | %s | %s | org: %s | volunteers: %d/%d \n",
                 id, title, eventDate, category, status,
                 organization != null ? organization.getName() : "none",
                 volunteers.size(), maxVolunteers);

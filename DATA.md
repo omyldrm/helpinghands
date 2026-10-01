@@ -6,7 +6,7 @@ name            (String)
 foundedDate     (LocalDate)  
 averageRating   (double)  
 isVerified      (boolean)  
-logoUrl         (String – image url)  
+logoUrl         (String – image url)
 
 Event :  
 title           (String)  
@@ -14,7 +14,7 @@ eventDate       (LocalDate)
 maxVolunteers   (int)  
 category        EventCategory (enum)  
 status          Status (enum)  
-bannerUrl       (String – image url)  
+bannerUrl       (String – image url)
 
 Volunteer :  
 firstName       (String)  
@@ -22,7 +22,19 @@ lastName        (String)
 email           (String)  
 birthDate       (LocalDate)  
 isStudent       (boolean)  
-avatarUrl       (String – image url)  
+avatarUrl       (String – image url)
+
+## Relations
+
+Organization 1 ──── N Event
+- An organization organizes zero or more events.
+- Each event is organized by exactly one organization.
+- Implementation: Organization has `List<Event> events`, Event has `Organization organization`.
+
+Event N ──── M Volunteer
+- An event can have zero or more volunteers (up to maxVolunteers).
+- A volunteer can sign up for zero or more events.
+- Implementation: Event has `List<Volunteer> volunteers`, Volunteer has `List<Event> events`.
 
 ## Some examples
 
