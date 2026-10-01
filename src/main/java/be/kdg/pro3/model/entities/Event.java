@@ -39,6 +39,7 @@ public class Event {
     // called by Volunteer.addEvent (M:N side)
     public void addVolunteer(Volunteer volunteer) {
         this.volunteers.add(volunteer);
+        volunteer.getEvents().add(this);
     }
 
     public Long getId() {
