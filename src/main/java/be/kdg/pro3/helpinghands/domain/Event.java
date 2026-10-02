@@ -1,4 +1,4 @@
-package be.kdg.pro3.model.entities;
+package be.kdg.pro3.helpinghands.domain;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

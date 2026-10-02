@@ -1,11 +1,10 @@
-package be.kdg.pro3.model;
+package be.kdg.pro3.helpinghands.repository;
 
-import be.kdg.pro3.model.entities.*;
+import be.kdg.pro3.helpinghands.domain.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class DataFactory {
     public static List<Volunteer> volunteers = new ArrayList<>();
