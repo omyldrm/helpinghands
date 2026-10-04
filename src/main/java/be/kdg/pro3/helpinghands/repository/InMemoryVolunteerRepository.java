@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemoryVolunteerRepository {
+public class InMemoryVolunteerRepository implements VolunteerRepository{
     private static final List<Volunteer> volunteers = new ArrayList<>();
 
     static {
@@ -17,6 +17,4 @@ public class InMemoryVolunteerRepository {
         volunteers.add(new Volunteer("Jane", "Doe", "janedoe@gmail.com", LocalDate.of(1969, 6, 4), false, "randomurl5", 5));
         volunteers.add(new Volunteer("Victor", "Osimhen", "victorosimhen@gmail.com", LocalDate.of(1997, 4, 22), false, "randomurl6", 6));
     }
-
-
 }
