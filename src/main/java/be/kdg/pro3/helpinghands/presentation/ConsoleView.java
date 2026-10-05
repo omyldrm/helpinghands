@@ -1,6 +1,6 @@
-package be.kdg.pro3.helpinghands.view;
+package be.kdg.pro3.helpinghands.presentation;
 
-public class View {
+public class ConsoleView {
     public static String createMainMenu() {
         return "What is your choice? \n" +
                 "1. Get events \n" +
