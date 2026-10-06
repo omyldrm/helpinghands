@@ -27,9 +27,9 @@ public class Presenter {
             consoleView.showMainMenu();
             int answer = sc.nextInt();
             switch (answer){
-                case 1 -> consoleView.showEventsMenu();
-                case 2 -> consoleView.showVolunteersMenu();
-                case 3 -> volunteerService.getAllVolunteers();
+                case 1 -> eventWorkflow();
+                case 2 -> volunteerWorkflow();
+                case 3 -> organizationService.getAllOrganizations();
                 case 4 -> running = false;
             }
         }
@@ -53,6 +53,17 @@ public class Presenter {
     }
 
     private void volunteerWorkflow(){
-
+        consoleView.showVolunteersMenu();
+        int answer = sc.nextInt();
+        while (running) {
+            switch (answer) {
+                case 1 -> volunteerService.getVolunteersByName();
+                case 2 -> volunteerService.getVolunteersById();
+                case 3 -> volunteerService.getVolunteersByEvent();
+                case 4 -> volunteerService.getAllVolunteers();
+                default -> running = false;
+            }
+        }
     }
+
 }

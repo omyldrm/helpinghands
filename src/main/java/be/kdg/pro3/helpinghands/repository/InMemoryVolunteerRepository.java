@@ -18,4 +18,19 @@ public class InMemoryVolunteerRepository implements VolunteerRepository{
     public List<Volunteer> getAllVolunteers(){
         return volunteers.stream().toList();
     }
+
+    @Override
+    public List<Volunteer> getVolunteersByEvent() {
+        return List.of();
+    }
+
+    @Override
+    public List<Volunteer> getVolunteersById() {
+        return List.of();
+    }
+
+    @Override
+    public List<Volunteer> getVolunteersByName() {
+        return List.of();
+    }
 }
