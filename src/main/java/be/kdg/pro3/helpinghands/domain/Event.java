@@ -42,7 +42,7 @@ public class Event {
         volunteer.getEvents().add(this);
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

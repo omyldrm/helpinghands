@@ -1,44 +1,50 @@
 package be.kdg.pro3.helpinghands.presentation;
 
+import org.springframework.stereotype.Component;
+
+// the same view class as in the mvp, contains strings etc
+@Component
 public class ConsoleView {
-    public static String createMainMenu() {
-        return "What is your choice? \n" +
-                "1. Get events \n" +
-                "2. Get volunteers \n" +
-                "3. Get organizations \n" +
-                "4. Exit \n" +
-                "Choose between 1 and 4";
+    public void showMainMenu() {
+        System.out.println("=== HELPING HANDS MAIN MENU ===");
+        System.out.println("1. Get events");
+        System.out.println("2. Get volunteers");
+        System.out.println("3. Get organizations");
+        System.out.println("4. Exit");
+        System.out.print("Choose between 1 and 4: ");
     }
 
-    public static String createSubMenuForEvents() {
-        return "What is your choice? \n" +
-                "1. Get events by type \n" +
-                "2. Get events per organization \n" +
-                "3. Get the events of a volunteer \n" +
-                "4. Get events by date \n" +
-                "5. Get all events \n" +
-                "6. Exit \n" +
-                "Choose between 1 and 6";
+    public void showEventsMenu() {
+        System.out.println("=== EVENTS ===");
+        System.out.println("1. Get events by type");
+        System.out.println("2. Get events per organization");
+        System.out.println("3. Get the events of a volunteer");
+        System.out.println("4. Get events by date");
+        System.out.println("5. Get all events");
+        System.out.println("6. Back");
+        System.out.print("Choose between 1 and 6: ");
     }
 
-    public static String createSubMenuForEventsByType() {
-        return "Choose a type \n" +
-                "1. Clean up \n" +
-                "2. Fundraiser \n" +
-                "3. Food distribution \n" +
-                "4. Education \n" +
-                "5. Animal care \n" +
-                "6. Healthcare \n" +
-                "7. Concert \n" +
-                "8. Exit \n";
+    public void showEventTypeMenu() {
+        System.out.println("=== CHOOSE A TYPE ===");
+        System.out.println("1. Clean up");
+        System.out.println("2. Fundraiser");
+        System.out.println("3. Food distribution");
+        System.out.println("4. Education");
+        System.out.println("5. Animal care");
+        System.out.println("6. Healthcare");
+        System.out.println("7. Concert");
+        System.out.println("8. Back");
+        System.out.print("Choose between 1 and 8: ");
     }
 
-    public static String createSubMenuForVolunteers() {
-        return "What is your choice? \n" +
-                "1. Get volunteers by name \n" +
-                "2. Get volunteers by ID \n" +
-                "3. Get volunteers by events \n" +
-                "4. Get all volunteers \n" +
-                "Choose between 1 and 4";
+    public void showVolunteersMenu() {
+        System.out.println("=== VOLUNTEERS ===");
+        System.out.println("1. Get volunteers by name");
+        System.out.println("2. Get volunteers by ID");
+        System.out.println("3. Get volunteers by event");
+        System.out.println("4. Get all volunteers");
+        System.out.println("5. Back");
+        System.out.print("Choose between 1 and 5: ");
     }
 }
