@@ -2,13 +2,17 @@ package be.kdg.pro3.helpinghands.repository;
 
 import be.kdg.pro3.helpinghands.domain.Event;
 import be.kdg.pro3.helpinghands.domain.EventCategory;
+import be.kdg.pro3.helpinghands.domain.Organization;
 import be.kdg.pro3.helpinghands.domain.Status;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class InMemoryEventRepository {
+@Repository
+public class InMemoryEventRepository implements EventRepository {
     private static final List<Event> events = new ArrayList<>();
 
     static {
@@ -21,5 +25,60 @@ public class InMemoryEventRepository {
         events.add(new Event("Feeding America Food Bank Drive", LocalDate.of(2026, 1, 20), 30, EventCategory.FOOD_DISTRIBUTION, Status.ONGOING, "feedingamerica.svg.url", 7L, "Houston"));
         events.add(new Event("WWF Coastal Cleanup - Great Barrier Reef", LocalDate.of(2026, 6, 8), 35, EventCategory.CLEANUP, Status.PLANNED, "wwfcleanup.svg.url", 8L, "Cape Town"));
         events.add(new Event("KDG Student quiz", LocalDate.of(2026, 12, 2), 5, EventCategory.EDUCATION, Status.PLANNED, "randomkdgphoto.svg.url", 9L, "Antwerp"));
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+    }
+
+    public List<Event> getAllEvents(){
+        return events.stream().toList();
+    }
+
+    @Override
+    public List<Event> getEventsByType(EventCategory category) {
+        return events.stream().filter(event -> event.getCategory() == category).toList();
+    }
+
+    @Override
+    public List<Event> getEventsByOrg(Long id) {
+        return events.stream()
+                .filter(e -> e.getOrganization() != null)
+                .filter(e -> Objects.equals(e.getOrganization().getId(), id))
+                .toList();
+    }
+
+    @Override
+    public List<Event> getEventsByVolunteer(String choice) {
+        return events.stream()
+                .filter(e -> e.getVolunteers().stream()
+                        .anyMatch(v -> v.getFirstName().equalsIgnoreCase(choice)
+                                || v.getLastName().equalsIgnoreCase(choice)
+                                || v.getFullName().equalsIgnoreCase(choice)))
+                .toList();
+    }
+
+    @Override
+    public List<Event> getEventsByDate(LocalDate date) {
+        return events.stream()
+                .filter(e -> date.equals(e.getEventDate()))
+                .toList();
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return events.stream()
+                .anyMatch(e -> Objects.equals(e.getId(), id));
+    }
+
+    // need this to know that next free ID = highest existing ID + 1
+    @Override
+    public long nextId() {
+        return events.stream()
+                .filter(e -> e.getId() != null)
+                .mapToLong(Event::getId)
+                .max()
+                .orElse(0) + 1;
+                // skips events without an ID, turns the rest into numbers, takes the max and adds 1
     }
 }
