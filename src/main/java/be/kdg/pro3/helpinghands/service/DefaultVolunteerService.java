@@ -25,17 +25,17 @@ public class DefaultVolunteerService implements VolunteerService{
     }
 
     @Override
-    public List<Volunteer> getVolunteersByName() {
+    public List<Volunteer> getVolunteersByName(String name) {
         return volunteerRepository.getVolunteersByName();
     }
 
     @Override
-    public List<Volunteer> getVolunteersById() {
+    public List<Volunteer> getVolunteersById(Long id) {
         return volunteerRepository.getVolunteersById();
     }
 
     @Override
-    public List<Volunteer> getVolunteersByEvent() {
+    public List<Volunteer> getVolunteersByEvent(Long id) {
         return volunteerRepository.getVolunteersByEvent();
     }
 }

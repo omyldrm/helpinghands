@@ -1,9 +1,11 @@
 package be.kdg.pro3.helpinghands.service;
 
 import be.kdg.pro3.helpinghands.domain.Event;
+import be.kdg.pro3.helpinghands.domain.EventCategory;
 import be.kdg.pro3.helpinghands.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -25,22 +27,22 @@ public class DefaultEventService implements EventService{
     }
 
     @Override
-    public List<Event> getEventsByType() {
+    public List<Event> getEventsByType(EventCategory category) {
         return eventRepository.getEventsByType();
     }
 
     @Override
-    public List<Event> getEventsByDate() {
+    public List<Event> getEventsByDate(LocalDate date) {
         return eventRepository.getEventsByDate();
     }
 
     @Override
-    public List<Event> getEventsByVolunteer() {
+    public List<Event> getEventsByVolunteer(String choice) {
         return eventRepository.getEventsByVolunteer();
     }
 
     @Override
-    public List<Event> getEventsByOrg() {
+    public List<Event> getEventsByOrg(Long id) {
         return eventRepository.getEventsByOrg();
     }
 }
