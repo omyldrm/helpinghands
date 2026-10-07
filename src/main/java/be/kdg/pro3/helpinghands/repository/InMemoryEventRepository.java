@@ -21,4 +21,9 @@ public class InMemoryEventRepository implements EventRepository {
     public List<Event> getAllEvents(){
         return events.stream().toList();
     }
+
+    @Override
+    public List<Event> getEventsByType() {
+        return events.stream().filter(event -> event.getCategory() == EventCategory.ANIMAL_CARE);
+    }
 }
