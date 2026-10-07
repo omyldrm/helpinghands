@@ -28,21 +28,21 @@ public class DefaultEventService implements EventService{
 
     @Override
     public List<Event> getEventsByType(EventCategory category) {
-        return eventRepository.getEventsByType();
+        return eventRepository.getEventsByType(category);
     }
 
     @Override
     public List<Event> getEventsByDate(LocalDate date) {
-        return eventRepository.getEventsByDate();
+        return eventRepository.getEventsByDate(date);
     }
 
     @Override
     public List<Event> getEventsByVolunteer(String choice) {
-        return eventRepository.getEventsByVolunteer();
+        return eventRepository.getEventsByVolunteer(choice);
     }
 
     @Override
     public List<Event> getEventsByOrg(Long id) {
-        return eventRepository.getEventsByOrg();
+        return eventRepository.getEventsByOrg(id);
     }
 }
