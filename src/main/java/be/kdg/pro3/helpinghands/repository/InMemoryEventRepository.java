@@ -40,7 +40,9 @@ public class InMemoryEventRepository implements EventRepository {
     public List<Event> getEventsByVolunteer(String choice) {
         return events.stream()
                 .filter(e -> e.getVolunteers().stream()
-                        .anyMatch(v -> v.getFirstName().equalsIgnoreCase(choice)))
+                        .anyMatch(v -> v.getFirstName().equalsIgnoreCase(choice)
+                                || v.getLastName().equalsIgnoreCase(choice)
+                                || v.getFullName().equalsIgnoreCase(choice)))
                 .toList();
     }
 
