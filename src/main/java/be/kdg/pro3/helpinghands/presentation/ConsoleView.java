@@ -54,6 +54,15 @@ public class ConsoleView {
         System.out.print("Choose between 1 and 5: ");
     }
 
+    public void showStatusMenu() {
+        System.out.println("=== CHOOSE A STATUS ===");
+        System.out.println("1. Planned");
+        System.out.println("2. Ongoing");
+        System.out.println("3. Completed");
+        System.out.println("4. Cancelled");
+        System.out.print("Choose between 1 and 4: ");
+    }
+
     // better to have this then have a sout in the presenter
     public void showMessage(String message) {
         System.out.println(message);

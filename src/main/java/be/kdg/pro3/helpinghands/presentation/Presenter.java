@@ -1,6 +1,7 @@
 package be.kdg.pro3.helpinghands.presentation;
 
 import be.kdg.pro3.helpinghands.domain.EventCategory;
+import be.kdg.pro3.helpinghands.domain.Status;
 import be.kdg.pro3.helpinghands.service.EventService;
 import be.kdg.pro3.helpinghands.service.OrganizationService;
 import be.kdg.pro3.helpinghands.service.VolunteerService;
@@ -161,6 +162,20 @@ public class Presenter implements CommandLineRunner {
             } catch (DateTimeParseException e) {
                 // exception to check if its a valid date
                 consoleView.showMessage("Invalid date, use yyyy-MM-dd (e.g. 2026-10-07):");
+            }
+        }
+    }
+
+    private Status readStatus() {
+        while (true) {
+            consoleView.showStatusMenu();
+            int choice = readInt();
+            switch (choice) {
+                case 1 -> { return Status.PLANNED; }
+                case 2 -> { return Status.ONGOING; }
+                case 3 -> { return Status.COMPLETED; }
+                case 4 -> { return Status.CANCELLED; }
+                default -> consoleView.showMessage("Invalid choice, choose between 1 and 4.");
             }
         }
     }
