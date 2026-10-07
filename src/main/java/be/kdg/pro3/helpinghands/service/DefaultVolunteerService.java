@@ -45,6 +45,13 @@ public class DefaultVolunteerService implements VolunteerService{
     }
 
     @Override
+    public Volunteer createVolunteer(String firstName, String lastName, String email, LocalDate birthDate, boolean isStudent) {
+        Volunteer volunteer = new Volunteer(firstName, lastName, email, birthDate, isStudent, null, volunteerRepository.nextId());
+        addVolunteer(volunteer);
+        return volunteer;
+    }
+
+    @Override
     public List<Volunteer> getAllVolunteers() {
         return volunteerRepository.getAllVolunteers();
     }
