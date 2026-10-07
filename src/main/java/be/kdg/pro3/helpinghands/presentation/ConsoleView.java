@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-// View (MVP): only presentation code, no logic
+// the same view as in mvp, just visual, no logic
 @Component
 public class ConsoleView {
 
@@ -54,6 +54,7 @@ public class ConsoleView {
         System.out.print("Choose between 1 and 5: ");
     }
 
+    // better to have this then have a sout in the presenter
     public void showMessage(String message) {
         System.out.println(message);
     }
@@ -76,14 +77,6 @@ public class ConsoleView {
         for (Volunteer volunteer : volunteers) {
             System.out.println(volunteer);
         }
-    }
-
-    public void showVolunteer(Volunteer volunteer) {
-        if (volunteer == null) {
-            System.out.println("No volunteer found.");
-            return;
-        }
-        System.out.println(volunteer);
     }
 
     public void showOrganizations(List<Organization> organizations) {
