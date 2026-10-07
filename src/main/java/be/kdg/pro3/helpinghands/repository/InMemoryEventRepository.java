@@ -53,4 +53,9 @@ public class InMemoryEventRepository implements EventRepository {
                 .toList();
     }
 
+    @Override
+    public boolean existsById(Long id) {
+        return events.stream()
+                .anyMatch(e -> Objects.equals(e.getId(), id));
+    }
 }

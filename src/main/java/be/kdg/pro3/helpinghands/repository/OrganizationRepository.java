@@ -10,4 +10,5 @@ import java.util.List;
 public interface OrganizationRepository{
     public void addOrganization(Organization organization);
     public List<Organization> getAllOrganizations();
+    boolean existsById(Long id);
 }

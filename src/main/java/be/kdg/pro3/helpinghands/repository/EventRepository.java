@@ -14,4 +14,5 @@ public interface EventRepository {
     List<Event> getEventsByOrg(Long id);
     List<Event> getEventsByVolunteer(String choice);
     List<Event> getEventsByDate(LocalDate date);
+    boolean existsById(Long id);
 }
