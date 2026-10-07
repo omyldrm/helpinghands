@@ -39,6 +39,13 @@ public class DefaultOrganizationService implements OrganizationService {
     }
 
     @Override
+    public Organization createOrganization(String name, LocalDate foundedDate) {
+        Organization organization = new Organization(name, foundedDate, 0.0, false, null, organizationRepository.nextId());
+        addOrganization(organization);
+        return organization;
+    }
+
+    @Override
     public List<Organization> getAllOrganizations() {
         return organizationRepository.getAllOrganizations();
     }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-// the same view as in mvp, just visual, no logic
+// the same view class as in the mvp, contains strings etc
 @Component
 public class ConsoleView {
 
@@ -16,8 +16,9 @@ public class ConsoleView {
         System.out.println("1. Get events");
         System.out.println("2. Get volunteers");
         System.out.println("3. Get organizations");
-        System.out.println("4. Exit");
-        System.out.print("Choose between 1 and 4: ");
+        System.out.println("4. Add organization");
+        System.out.println("5. Exit");
+        System.out.print("Choose between 1 and 5: ");
     }
 
     public void showEventsMenu() {
@@ -27,8 +28,9 @@ public class ConsoleView {
         System.out.println("3. Get the events of a volunteer");
         System.out.println("4. Get events by date");
         System.out.println("5. Get all events");
-        System.out.println("6. Back");
-        System.out.print("Choose between 1 and 6: ");
+        System.out.println("6. Add event");
+        System.out.println("7. Back");
+        System.out.print("Choose between 1 and 7: ");
     }
 
     public void showEventTypeMenu() {
@@ -44,17 +46,26 @@ public class ConsoleView {
         System.out.print("Choose between 1 and 8: ");
     }
 
+    public void showStatusMenu() {
+        System.out.println("=== CHOOSE A STATUS ===");
+        System.out.println("1. Planned");
+        System.out.println("2. Ongoing");
+        System.out.println("3. Completed");
+        System.out.println("4. Cancelled");
+        System.out.print("Choose between 1 and 4: ");
+    }
+
     public void showVolunteersMenu() {
         System.out.println("=== VOLUNTEERS ===");
         System.out.println("1. Get volunteers by name");
         System.out.println("2. Get volunteers by ID");
         System.out.println("3. Get volunteers by event");
         System.out.println("4. Get all volunteers");
-        System.out.println("5. Back");
-        System.out.print("Choose between 1 and 5: ");
+        System.out.println("5. Add volunteer");
+        System.out.println("6. Back");
+        System.out.print("Choose between 1 and 6: ");
     }
 
-    // better to have this then have a sout in the presenter
     public void showMessage(String message) {
         System.out.println(message);
     }

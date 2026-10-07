@@ -10,4 +10,5 @@ public interface VolunteerRepository {
     List<Volunteer> getVolunteersByName(String name);
     List<Volunteer> getVolunteersById(Long id);
     List<Volunteer> getVolunteersByEvent(Long id);
+    long nextId();
 }

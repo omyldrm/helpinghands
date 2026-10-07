@@ -2,12 +2,15 @@ package be.kdg.pro3.helpinghands.service;
 
 import be.kdg.pro3.helpinghands.domain.Event;
 import be.kdg.pro3.helpinghands.domain.EventCategory;
+import be.kdg.pro3.helpinghands.domain.Organization;
+import be.kdg.pro3.helpinghands.domain.Status;
 import be.kdg.pro3.helpinghands.repository.EventRepository;
 import be.kdg.pro3.helpinghands.repository.OrganizationRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class DefaultEventService implements EventService{
@@ -24,6 +27,9 @@ public class DefaultEventService implements EventService{
         if (event == null) {
             throw new IllegalArgumentException("Event can't be empty.");
         }
+        if (event.getId() == null || eventRepository.existsById(event.getId())) {
+            throw new IllegalArgumentException("An event needs a unique ID.");
+        }
         if (event.getTitle() == null || event.getTitle().isBlank()) {
             throw new IllegalArgumentException("An event needs a title.");
         }
@@ -37,6 +43,20 @@ public class DefaultEventService implements EventService{
             throw new IllegalArgumentException("Max volunteers must be greater than 0.");
         }
         eventRepository.addEvent(event);
+    }
+
+    @Override
+    public Event createEvent(String title, LocalDate date, int maxVolunteers, EventCategory category,
+                             Status status, String location, Long organizationId) {
+        Organization organization = organizationRepository.getAllOrganizations().stream()
+                .filter(o -> Objects.equals(o.getId(), organizationId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("No organization found with ID " + organizationId + "."));
+
+        Event event = new Event(title, date, maxVolunteers, category, status, null, eventRepository.nextId(), location);
+        addEvent(event);
+        organization.addEvent(event);
+        return event;
     }
 
     @Override
