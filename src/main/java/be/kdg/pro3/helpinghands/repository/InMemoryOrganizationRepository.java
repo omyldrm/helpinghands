@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class InMemoryOrganizationRepository implements OrganizationRepository {
@@ -19,5 +20,11 @@ public class InMemoryOrganizationRepository implements OrganizationRepository {
     @Override
     public List<Organization> getAllOrganizations() {
         return organizations.stream().toList();
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return organizations.stream()
+                .anyMatch(o -> Objects.equals(o.getId(), id));
     }
 }

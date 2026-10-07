@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class InMemoryVolunteerRepository implements VolunteerRepository{
@@ -20,17 +21,26 @@ public class InMemoryVolunteerRepository implements VolunteerRepository{
     }
 
     @Override
-    public List<Volunteer> getVolunteersByEvent() {
-        return List.of();
+    public List<Volunteer> getVolunteersByEvent(Long id) {
+        return volunteers.stream()
+                .filter(v -> v.getEvents().stream()
+                        .anyMatch(e -> Objects.equals(e.getId(), id)))
+                .toList();
     }
 
     @Override
-    public List<Volunteer> getVolunteersById() {
-        return List.of();
+    public List<Volunteer> getVolunteersById(Long id) {
+        return volunteers.stream()
+                .filter(v -> Objects.equals(v.getId(), id))
+                .toList();
     }
 
     @Override
-    public List<Volunteer> getVolunteersByName() {
-        return List.of();
+    public List<Volunteer> getVolunteersByName(String name) {
+        return volunteers.stream()
+                .filter(v -> v.getFirstName().equalsIgnoreCase(name)
+                        || v.getLastName().equalsIgnoreCase(name)
+                        || v.getFullName().equalsIgnoreCase(name))
+                .toList();
     }
 }

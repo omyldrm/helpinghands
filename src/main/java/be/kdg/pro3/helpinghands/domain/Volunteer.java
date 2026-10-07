@@ -31,7 +31,6 @@ public class Volunteer {
 
     // M:N — connect this volunteer to an event (sets both sides)
     public void addEvent(Event event) {
-        this.events.add(event);
         event.addVolunteer(this);
     }
 
@@ -65,6 +64,10 @@ public class Volunteer {
 
     public List<Event> getEvents() {
         return events;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
     @Override

@@ -4,6 +4,7 @@ import be.kdg.pro3.helpinghands.domain.EventCategory;
 import be.kdg.pro3.helpinghands.service.EventService;
 import be.kdg.pro3.helpinghands.service.OrganizationService;
 import be.kdg.pro3.helpinghands.service.VolunteerService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -11,7 +12,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 @Component
-public class Presenter {
+public class Presenter implements CommandLineRunner {
     private final ConsoleView consoleView;
     private final EventService eventService;
     private final OrganizationService organizationService;
@@ -162,5 +163,10 @@ public class Presenter {
                 consoleView.showMessage("Invalid date, use yyyy-MM-dd (e.g. 2026-10-07):");
             }
         }
+    }
+
+    @Override
+    public void run(String... args) {
+        start();
     }
 }
