@@ -1,10 +1,16 @@
 package be.kdg.pro3.helpinghands.presentation;
 
+import be.kdg.pro3.helpinghands.domain.Event;
+import be.kdg.pro3.helpinghands.domain.Organization;
+import be.kdg.pro3.helpinghands.domain.Volunteer;
 import org.springframework.stereotype.Component;
 
-// the same view class as in the mvp, contains strings etc
+import java.util.List;
+
+// View (MVP): only presentation code, no logic
 @Component
 public class ConsoleView {
+
     public void showMainMenu() {
         System.out.println("=== HELPING HANDS MAIN MENU ===");
         System.out.println("1. Get events");
@@ -46,5 +52,47 @@ public class ConsoleView {
         System.out.println("4. Get all volunteers");
         System.out.println("5. Back");
         System.out.print("Choose between 1 and 5: ");
+    }
+
+    public void showMessage(String message) {
+        System.out.println(message);
+    }
+
+    public void showEvents(List<Event> events) {
+        if (events.isEmpty()) {
+            System.out.println("No events found.");
+            return;
+        }
+        for (Event event : events) {
+            System.out.println(event);
+        }
+    }
+
+    public void showVolunteers(List<Volunteer> volunteers) {
+        if (volunteers.isEmpty()) {
+            System.out.println("No volunteers found.");
+            return;
+        }
+        for (Volunteer volunteer : volunteers) {
+            System.out.println(volunteer);
+        }
+    }
+
+    public void showVolunteer(Volunteer volunteer) {
+        if (volunteer == null) {
+            System.out.println("No volunteer found.");
+            return;
+        }
+        System.out.println(volunteer);
+    }
+
+    public void showOrganizations(List<Organization> organizations) {
+        if (organizations.isEmpty()) {
+            System.out.println("No organizations found.");
+            return;
+        }
+        for (Organization organization : organizations) {
+            System.out.println(organization);
+        }
     }
 }

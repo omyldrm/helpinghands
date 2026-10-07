@@ -1,24 +1,24 @@
 package be.kdg.pro3.helpinghands.presentation;
 
-import be.kdg.pro3.helpinghands.domain.Event;
 import be.kdg.pro3.helpinghands.domain.EventCategory;
 import be.kdg.pro3.helpinghands.service.EventService;
 import be.kdg.pro3.helpinghands.service.OrganizationService;
 import be.kdg.pro3.helpinghands.service.VolunteerService;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class Presenter {
     private final ConsoleView consoleView;
     private final EventService eventService;
     private final OrganizationService organizationService;
     private final VolunteerService volunteerService;
-    private boolean running = true;
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
-    public Presenter(ConsoleView consoleView, EventService eventService, OrganizationService organizationService, VolunteerService volunteerService) {
+    public Presenter(ConsoleView consoleView, EventService eventService,
+                     OrganizationService organizationService, VolunteerService volunteerService) {
         this.consoleView = consoleView;
         this.eventService = eventService;
         this.organizationService = organizationService;
@@ -26,29 +26,34 @@ public class Presenter {
     }
 
     public void start() {
+        boolean running = true;
         while (running) {
             consoleView.showMainMenu();
             int answer = sc.nextInt();
-            switch (answer){
+            sc.nextLine(); // consume leftover Enter
+
+            switch (answer) {
                 case 1 -> eventWorkflow();
                 case 2 -> volunteerWorkflow();
-                case 3 -> organizationService.getAllOrganizations();
+                case 3 -> consoleView.showOrganizations(organizationService.getAllOrganizations());
                 case 4 -> running = false;
+                default -> consoleView.showMessage("Invalid choice, choose between 1 and 4.");
             }
         }
     }
 
-    // could do methods for each selections like event workflow and call it in the switches
+    private void eventWorkflow() {
+        boolean inMenu = true;
+        while (inMenu) {
+            consoleView.showEventsMenu();
+            int answer = sc.nextInt();
+            sc.nextLine();
 
-    private void eventWorkflow(){
-        consoleView.showEventsMenu();
-        int answer = sc.nextInt();
-        while (running) {
             switch (answer) {
-                case 1: {
-                    // get events by type
+                case 1 -> {
                     consoleView.showEventTypeMenu();
                     int choice = sc.nextInt();
+                    sc.nextLine();
 
                     EventCategory category = switch (choice) {
                         case 1 -> EventCategory.CLEANUP;
@@ -59,70 +64,66 @@ public class Presenter {
                         case 6 -> EventCategory.HEALTHCARE;
                         case 7 -> EventCategory.CONCERT;
                         default -> null; // back or invalid
-
                     };
 
                     if (category != null) {
-                        List<Event> events = eventService.getEventsByType(category);
+                        consoleView.showEvents(eventService.getEventsByType(category));
                     }
                 }
-                case 2: {
-                    // get events per org
-                    organizationService.getAllOrganizations();
-                    System.out.println("From which organization do you want to see the events for? Which ID? ");
-                    Long id = sc.nextLong();
-                    eventService.getEventsByOrg(id);
+                case 2 -> {
+                    consoleView.showOrganizations(organizationService.getAllOrganizations());
+                    consoleView.showMessage("Which organization ID do you want to see the events for?");
+                    long id = sc.nextLong();
+                    sc.nextLine();
+                    consoleView.showEvents(eventService.getEventsByOrg(id));
                 }
-                case 3: {
-                    // get events by organizations
-                    System.out.println("What's the name of the volunteer?");
-                    String choice = sc.nextLine();
-                    eventService.getEventsByVolunteer(choice);
+                case 3 -> {
+                    consoleView.showMessage("What's the name of the volunteer?");
+                    String name = sc.nextLine();
+                    consoleView.showEvents(eventService.getEventsByVolunteer(name));
                 }
-                case 4: {
-                    System.out.println("Enter a date (yyyy-MM-dd):");
+                case 4 -> {
+                    consoleView.showMessage("Enter a date (yyyy-MM-dd):");
                     LocalDate date = LocalDate.parse(sc.nextLine());
-                    eventService.getEventsByDate(date);
+                    consoleView.showEvents(eventService.getEventsByDate(date));
                 }
-                case 5: {
-                    eventService.getAllEvents();
-                }
-                default: {
-                    running = false;
-                }
+                case 5 -> consoleView.showEvents(eventService.getAllEvents());
+                case 6 -> inMenu = false; // back to main menu
+                default -> consoleView.showMessage("Invalid choice, choose between 1 and 6.");
             }
         }
     }
 
-    private void volunteerWorkflow(){
-        consoleView.showVolunteersMenu();
-        int answer = sc.nextInt();
-        while (running) {
+    private void volunteerWorkflow() {
+        boolean inMenu = true;
+        while (inMenu) {
+            consoleView.showVolunteersMenu();
+            int answer = sc.nextInt();
+            sc.nextLine();
+
             switch (answer) {
-                case 1: {
-                    System.out.println("Who are you looking for? ");
+                case 1 -> {
+                    consoleView.showMessage("Who are you looking for?");
                     String name = sc.nextLine().toLowerCase().trim();
-                    volunteerService.getVolunteersByName(name);
+                    consoleView.showVolunteers(volunteerService.getVolunteersByName(name));
                 }
-                case 2: {
-                    System.out.println("Give the ID: ");
-                    Long id = sc.nextLong();
-                    volunteerService.getVolunteersById(id);
+                case 2 -> {
+                    consoleView.showMessage("Give the ID:");
+                    long id = sc.nextLong();
+                    sc.nextLine();
+                    consoleView.showVolunteers(volunteerService.getVolunteersById(id));
                 }
-                case 3: {
-                    eventService.getAllEvents();
-                    System.out.println("What is the ID of the event?");
-                    Long id = sc.nextLong();
-                    volunteerService.getVolunteersByEvent(id);
+                case 3 -> {
+                    consoleView.showEvents(eventService.getAllEvents());
+                    consoleView.showMessage("What is the ID of the event?");
+                    long id = sc.nextLong();
+                    sc.nextLine();
+                    consoleView.showVolunteers(volunteerService.getVolunteersByEvent(id));
                 }
-                case 4: {
-                    volunteerService.getAllVolunteers();
-                }
-                default: {
-                    running = false;
-                }
+                case 4 -> consoleView.showVolunteers(volunteerService.getAllVolunteers());
+                case 5 -> inMenu = false; // back to main menu
+                default -> consoleView.showMessage("Invalid choice, choose between 1 and 5.");
             }
         }
     }
-
 }
