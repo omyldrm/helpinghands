@@ -1,12 +1,15 @@
 package be.kdg.pro3.helpinghands.repository;
 
 import be.kdg.pro3.helpinghands.domain.Organization;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class InMemoryOrganizationRepository {
+@Repository
+public class InMemoryOrganizationRepository implements OrganizationRepository {
     private static final List<Organization> organizations = new ArrayList<>();
 
     static {
@@ -16,5 +19,30 @@ public class InMemoryOrganizationRepository {
         organizations.add(new Organization("Feeding America", LocalDate.of(1979, 1, 1), 2.3, true, "https://i0.wp.com/www.fsproduce.com/wp-content/uploads/2015/05/Feeding_America_logo.svg.png?ssl=1", 4L));
         organizations.add(new Organization("World Wildlife Fund", LocalDate.of(1961, 4, 29), 5, true, "https://thumb.wikimedia.org/wikipedia/de/thumb/0/06/WWF_Logo.svg/1920px-WWF_Logo.svg.png?utm_source=de.wikipedia.org&utm_campaign=index&utm_content=thumbnail", 5L));
         organizations.add(new Organization("KDG", LocalDate.of(1999, 9, 9), 1.2, false, "https://upload.wikimedia.org/wikipedia/commons/5/5b/Logo_Karel_de_Grote_Hogeschool.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original", 6L));
+    }
+
+    @Override
+    public void addOrganization(Organization organization) {
+        organizations.add(organization);
+    }
+
+    @Override
+    public List<Organization> getAllOrganizations() {
+        return organizations.stream().toList();
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return organizations.stream()
+                .anyMatch(o -> Objects.equals(o.getId(), id));
+    }
+
+    @Override
+    public long nextId() {
+        return organizations.stream()
+                .filter(o -> o.getId() != null)
+                .mapToLong(Organization::getId)
+                .max()
+                .orElse(0) + 1;
     }
 }

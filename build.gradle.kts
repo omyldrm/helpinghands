@@ -1,10 +1,7 @@
 plugins {
     id("java")
-    id("application")
-}
-
-application {
-    mainClass.set("be.kdg.pro3.Main")
+    id("org.springframework.boot") version "4.1.1"
+    id("io.spring.dependency-management") version "1.1.7"
 }
 
 group = "be.kdg.pro3"
@@ -15,15 +12,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:6.0.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("org.springframework.boot:spring-boot-starter")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-tasks.getByName("run", JavaExec::class) {
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
     standardInput = System.`in`
 }
