@@ -16,7 +16,6 @@ public class EventForm {
     private Long organizationId;
 
     public EventForm(){
-
     }
 
     public String getTitle() {
