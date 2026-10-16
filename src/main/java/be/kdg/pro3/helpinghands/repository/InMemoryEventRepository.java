@@ -28,10 +28,12 @@ public class InMemoryEventRepository implements EventRepository {
     }
 
     public void addEvent(Event event) {
-        events.add(event);
+        Long newId = nextId(); // Calculate highest ID + 1
+        Event savedEvent = new Event(event.getTitle(), event.getEventDate(), event.getMaxVolunteers(), event.getCategory(), event.getStatus(), event.getBannerUrl(), newId, event.getLocation());
+        events.add(savedEvent);
     }
 
-    public List<Event> getAllEvents(){
+    public List<Event> getAllEvents() {
         return events.stream().toList();
     }
 
@@ -79,6 +81,6 @@ public class InMemoryEventRepository implements EventRepository {
                 .mapToLong(Event::getId)
                 .max()
                 .orElse(0) + 1;
-                // skips events without an ID, turns the rest into numbers, takes the max and adds 1
+        // skips events without an ID, turns the rest into numbers, takes the max and adds 1
     }
 }

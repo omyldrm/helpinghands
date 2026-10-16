@@ -1,11 +1,14 @@
 package be.kdg.pro3.helpinghands.controller;
 
+import be.kdg.pro3.helpinghands.domain.Event;
 import be.kdg.pro3.helpinghands.service.EventService;
 import be.kdg.pro3.helpinghands.service.OrganizationService;
 import be.kdg.pro3.helpinghands.web.EventForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -33,5 +36,17 @@ public class EventController {
         return "add-events";
     }
 
-
+    @PostMapping
+    public String submitAddEvent(@ModelAttribute("eventForm") EventForm eventForm) {
+        Event newEvent = new Event(eventForm.getTitle(),
+                eventForm.getEventDate(),
+                eventForm.getMaxVolunteers(),
+                eventForm.getCategory(),
+                eventForm.getStatus(),
+                eventForm.getBannerUrl(),
+                eventForm.getOrganizationId(),
+                eventForm.getLocation());
+        eventService.addEvent(newEvent);
+        return "redirect:/events";
+    }
 }
