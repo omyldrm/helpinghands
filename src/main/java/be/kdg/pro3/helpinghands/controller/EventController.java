@@ -2,6 +2,7 @@ package be.kdg.pro3.helpinghands.controller;
 
 import be.kdg.pro3.helpinghands.service.EventService;
 import be.kdg.pro3.helpinghands.service.OrganizationService;
+import be.kdg.pro3.helpinghands.web.EventForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,4 +25,13 @@ public class EventController {
         model.addAttribute("events", eventService.getAllEvents());
         return "events"; // loads src/main/resources/templates/events.html
     }
+
+    @GetMapping
+    public String showAddEventForm(Model model){
+        model.addAttribute("eventForm", new EventForm());
+        model.addAttribute("organizations", organizationService.getAllOrganizations());
+        return "add-events";
+    }
+
+
 }
