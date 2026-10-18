@@ -9,11 +9,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class DefaultVolunteerService implements VolunteerService{
+public class DefaultVolunteerService implements VolunteerService {
     private final VolunteerRepository volunteerRepository;
     private final EventRepository eventRepository;
 
-    public DefaultVolunteerService(VolunteerRepository volunteerRepository, EventRepository eventRepository){
+    public DefaultVolunteerService(VolunteerRepository volunteerRepository, EventRepository eventRepository) {
         this.volunteerRepository = volunteerRepository;
         this.eventRepository = eventRepository;
     }
@@ -22,12 +22,6 @@ public class DefaultVolunteerService implements VolunteerService{
     public void addVolunteer(Volunteer volunteer) {
         if (volunteer == null) {
             throw new IllegalArgumentException("Volunteer can't be empty.");
-        }
-        if (volunteer.getId() == null) {
-            throw new IllegalArgumentException("A volunteer needs an ID.");
-        }
-        if (!volunteerRepository.getVolunteersById(volunteer.getId()).isEmpty()) {
-            throw new IllegalArgumentException("A volunteer with ID " + volunteer.getId() + " already exists.");
         }
         if (volunteer.getFirstName() == null || volunteer.getFirstName().isBlank()) {
             throw new IllegalArgumentException("A volunteer needs a first name.");
@@ -38,7 +32,7 @@ public class DefaultVolunteerService implements VolunteerService{
         if (volunteer.getEmail() == null || !volunteer.getEmail().contains("@")) {
             throw new IllegalArgumentException("A volunteer needs a valid email address.");
         }
-        if (volunteer.getBirthDate() != null && volunteer.getBirthDate().isAfter(LocalDate.now())) {
+        if ( volunteer.getBirthDate() != null && volunteer.getBirthDate().isAfter(LocalDate.now())){
             throw new IllegalArgumentException("The birth date can't be in the future.");
         }
         volunteerRepository.addVolunteer(volunteer);

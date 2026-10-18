@@ -10,8 +10,7 @@ public class VolunteerForm {
     private boolean isStudent;
     private String avatarUrl;
 
-    public VolunteerForm(){
-
+    public VolunteerForm() {
     }
 
     public String getFirstName() {

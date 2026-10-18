@@ -25,7 +25,7 @@ public class OrganizationController {
         return "organizations";
     }
 
-    @GetMapping
+    @GetMapping("/add")
     public String showOrganizationForm(Model model){
         model.addAttribute("organizationForm", new OrganizationForm());
         return "add-organizations";

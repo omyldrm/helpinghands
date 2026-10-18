@@ -29,7 +29,7 @@ public class EventController {
         return "events"; // loads src/main/resources/templates/events.html
     }
 
-    @GetMapping
+    @GetMapping("/add")
     public String showAddEventForm(Model model){
         model.addAttribute("eventForm", new EventForm());
         model.addAttribute("organizations", organizationService.getAllOrganizations());
