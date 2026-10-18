@@ -2,6 +2,8 @@ package be.kdg.pro3.helpinghands.controller;
 
 import be.kdg.pro3.helpinghands.service.OrganizationService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,4 +14,11 @@ public class OrganizationController {
     public OrganizationController(OrganizationService organizationService) {
         this.organizationService = organizationService;
     }
+
+    @GetMapping
+    public String showAllOrganizations(Model model){
+        model.addAttribute("organizations", organizationService.getAllOrganizations());
+        return "organizations";
+    }
+
 }
