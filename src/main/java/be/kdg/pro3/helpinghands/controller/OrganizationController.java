@@ -1,10 +1,13 @@
 package be.kdg.pro3.helpinghands.controller;
 
+import be.kdg.pro3.helpinghands.domain.Organization;
 import be.kdg.pro3.helpinghands.service.OrganizationService;
 import be.kdg.pro3.helpinghands.web.OrganizationForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -26,5 +29,19 @@ public class OrganizationController {
     public String showOrganizationForm(Model model){
         model.addAttribute("organizationForm", new OrganizationForm());
         return "add-organizations";
+    }
+
+    @PostMapping("/add")
+    public String submitOrganizationForm(@ModelAttribute("organizationForm") OrganizationForm organizationForm){
+        Organization newOrganization = new Organization(
+                organizationForm.getName(),
+                organizationForm.getFoundedDate(),
+                organizationForm.getAverageRating(),
+                organizationForm.isVerified(),
+                organizationForm.getLogoUrl(),
+                null
+        );
+        organizationService.addOrganization(newOrganization);
+        return "redirect:/organizations";
     }
 }

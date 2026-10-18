@@ -23,6 +23,17 @@ public class InMemoryOrganizationRepository implements OrganizationRepository {
 
     @Override
     public void addOrganization(Organization organization) {
+        Long newId = nextId();
+
+        Organization savedOrg = new Organization(
+                organization.getName(),
+                organization.getFoundedDate(),
+                organization.getAverageRating(),
+                organization.isVerified(),
+                organization.getLogoUrl(),
+                newId
+        );
+
         organizations.add(organization);
     }
 
