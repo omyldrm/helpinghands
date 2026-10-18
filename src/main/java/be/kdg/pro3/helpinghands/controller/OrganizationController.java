@@ -1,6 +1,7 @@
 package be.kdg.pro3.helpinghands.controller;
 
 import be.kdg.pro3.helpinghands.service.OrganizationService;
+import be.kdg.pro3.helpinghands.web.OrganizationForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,4 +22,9 @@ public class OrganizationController {
         return "organizations";
     }
 
+    @GetMapping
+    public String showOrganizationForm(Model model){
+        model.addAttribute("organizationForm", new OrganizationForm());
+        return "add-organizations";
+    }
 }
