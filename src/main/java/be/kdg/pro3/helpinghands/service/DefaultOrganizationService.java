@@ -20,15 +20,10 @@ public class DefaultOrganizationService implements OrganizationService {
         if (organization == null) {
             throw new IllegalArgumentException("Organization can't be empty.");
         }
-        if (organization.getId() == null) {
-            throw new IllegalArgumentException("An organization needs an ID.");
-        }
-        if (organizationRepository.existsById(organization.getId())) {
-            throw new IllegalArgumentException("An organization with ID " + organization.getId() + " already exists.");
-        }
         if (organization.getName() == null || organization.getName().isBlank()) {
             throw new IllegalArgumentException("An organization needs a name.");
         }
+
         if (organization.getFoundedDate() != null && organization.getFoundedDate().isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("The founding date can't be in the future.");
         }
