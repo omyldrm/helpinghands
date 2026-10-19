@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Events - Helping Hands</title>
 </head>
 <body>
-<h1>All Volunteer Events</h1>
-<a>+ Add New Event</a>
-<br/><br/>
-<table border="1">
+<nav>
+    <a th:href="@{/events}">Events</a>
+    <a th:href="@{/organizations}">Organizations</a>
+    <a th:href="@{/volunteers}">Volunteers</a>
+</nav>
+
+<h1>All Events</h1>
+<a th:href="@{/events/add}">+ Add Event</a>
+
+<table>
     <thead>
     <tr>
         <th>ID</th>
@@ -22,15 +28,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>1</td>
-        <td>Community Cleanup</td>
-        <td>2026-10-25</td>
-        <td>Antwerp</td>
-        <td>ENVIRONMENT</td>
-        <td>OPEN</td>
-        <td>20</td>
-        <td>Organization Name</td>
+    <tr th:each="event : ${events}">
+        <td th:text="${event.getId()}">1</td>
+        <td th:text="${event.getTitle()}">Event Title</td>
+        <td th:text="${event.getEventDate()}">2026-10-20</td>
+        <td th:text="${event.getLocation()}">Location</td>
+        <td th:text="${event.getCategory()}">CONCERT</td>
+        <td th:text="${event.getStatus()}">PLANNED</td>
+        <td th:text="${event.getMaxVolunteers()}">10</td>
+        <td th:text="${event.getOrganization() != null ? event.getOrganization().getName() : 'None'}">Organization Name</td>
     </tr>
     </tbody>
 </table>
