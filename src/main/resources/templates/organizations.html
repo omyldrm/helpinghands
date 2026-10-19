@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Organizations - Helping Hands</title>
 </head>
 <body>
+<nav>
+    <a th:href="@{/events}">Events</a>
+    <a th:href="@{/organizations}">Organizations</a>
+    <a th:href="@{/volunteers}">Volunteers</a>
+</nav>
 
+<h1>All Organizations</h1>
+<a th:href="@{/organizations/add}">+ Add Organization</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Logo</th>
+        <th>Name</th>
+        <th>Founded Date</th>
+        <th>Rating</th>
+        <th>Verified</th>
+        <th>Total Events</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="org : ${organizations}">
+        <td th:text="${org.getId()}">1</td>
+        <td><img th:if="${org.getLogoUrl() != null}" th:src="${org.getLogoUrl()}" alt="Logo"/></td>
+        <td th:text="${org.getName()}">Org Name</td>
+        <td th:text="${org.getFoundedDate()}">2020-01-01</td>
+        <td th:text="${org.getAverageRating()}">4.5</td>
+        <td th:text="${org.isVerified() ? 'Yes' : 'No'}">Yes</td>
+        <td th:text="${org.getEvents() != null ? org.getEvents().size() : 0}">0</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
