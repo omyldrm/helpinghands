@@ -29,14 +29,14 @@
     </thead>
     <tbody>
     <tr th:each="event : ${events}">
-        <td th:text="${[verdachte link verwijderd]}">1</td>
-        <td th:text="${event.title}">Event Title</td>
-        <td th:text="${event.eventDate}">2026-10-20</td>
-        <td th:text="${event.location}">Location</td>
-        <td th:text="${event.category}">CONCERT</td>
-        <td th:text="${event.status}">PLANNED</td>
-        <td th:text="${event.maxVolunteers}">10</td>
-        <td th:text="${event.organization != null ? [verdachte link verwijderd] : 'None'}">Organization Name</td>
+        <td th:text="${event.getId()}">1</td>
+        <td th:text="${event.getTitle()}">Event Title</td>
+        <td th:text="${event.getEventDate()}">2026-10-20</td>
+        <td th:text="${event.getLocation()}">Location</td>
+        <td th:text="${event.getCategory()}">CONCERT</td>
+        <td th:text="${event.getStatus()}">PLANNED</td>
+        <td th:text="${event.getMaxVolunteers()}">10</td>
+        <td th:text="${event.getOrganization() != null ? event.getOrganization().getName() : 'None'}">Organization Name</td>
     </tr>
     </tbody>
 </table>
