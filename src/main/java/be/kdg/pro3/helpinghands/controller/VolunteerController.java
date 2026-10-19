@@ -40,7 +40,7 @@ public class VolunteerController {
                 volunteerForm.getBirthDate(),
                 volunteerForm.isStudent(),
                 volunteerForm.getAvatarUrl(),
-                null
+                0
         );
         volunteerService.addVolunteer(volunteer);
         return "redirect:/volunteers";
