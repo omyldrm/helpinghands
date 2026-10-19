@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Volunteers - Helping Hands</title>
 </head>
 <body>
+<nav>
+    <a th:href="@{/events}">Events</a>
+    <a th:href="@{/organizations}">Organizations</a>
+    <a th:href="@{/volunteers}">Volunteers</a>
+</nav>
 
+<h1>All Volunteers</h1>
+<a th:href="@{/volunteers/add}">+ Add Volunteer</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Avatar</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Birth Date</th>
+        <th>Student</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="volunteer : ${volunteers}">
+        <td th:text="${volunteer.getId()}">1</td>
+        <td><img th:if="${volunteer.getAvatarUrl() != null}" th:src="${volunteer.getAvatarUrl()}" alt="Avatar"/></td>
+        <td th:text="${volunteer.getFullName()}">John Doe</td>
+        <td th:text="${volunteer.getEmail()}">Email Address</td>
+        <td th:text="${volunteer.getBirthDate()}">2000-01-01</td>
+        <td th:text="${volunteer.isStudent() ? 'Yes' : 'No'}">Yes</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
