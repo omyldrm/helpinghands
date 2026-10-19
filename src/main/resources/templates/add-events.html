@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Events - Helping Hands</title>
+    <title>Add Event - Helping Hands</title>
 </head>
 <body>
 <nav>
@@ -11,34 +11,59 @@
     <a th:href="@{/volunteers}">Volunteers</a>
 </nav>
 
-<h1>All Events</h1>
-<a th:href="@{/events/add}">+ Add Event</a>
+<h1>Add New Event</h1>
 
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Location</th>
-        <th>Category</th>
-        <th>Status</th>
-        <th>Max Volunteers</th>
-        <th>Organization</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="event : ${events}">
-        <td th:text="${event.getId()}">1</td>
-        <td th:text="${event.getTitle()}">Event Title</td>
-        <td th:text="${event.getEventDate()}">2026-10-20</td>
-        <td th:text="${event.getLocation()}">Location</td>
-        <td th:text="${event.getCategory()}">CONCERT</td>
-        <td th:text="${event.getStatus()}">PLANNED</td>
-        <td th:text="${event.getMaxVolunteers()}">10</td>
-        <td th:text="${event.getOrganization() != null ? event.getOrganization().getName() : 'None'}">Organization Name</td>
-    </tr>
-    </tbody>
-</table>
+<form th:action="@{/events/add}" th:object="${eventForm}" method="post">
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" th:field="*{title}" required />
+    </div>
+
+    <div>
+        <label for="eventDate">Event Date:</label>
+        <input type="date" id="eventDate" th:field="*{eventDate}" required />
+    </div>
+
+    <div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" th:field="*{location}" required />
+    </div>
+
+    <div>
+        <label for="maxVolunteers">Max Volunteers:</label>
+        <input type="number" id="maxVolunteers" th:field="*{maxVolunteers}" required min="1" />
+    </div>
+
+    <div>
+        <label for="category">Category:</label>
+        <select id="category" th:field="*{category}">
+            <option th:each="cat : ${T(be.kdg.pro3.helpinghands.domain.EventCategory).values()}"
+                    th:value="${cat}" th:text="${cat}"></option>
+        </select>
+    </div>
+
+    <div>
+        <label for="status">Status:</label>
+        <select id="status" th:field="*{status}">
+            <option th:each="st : ${T(be.kdg.pro3.helpinghands.domain.Status).values()}"
+                    th:value="${st}" th:text="${st}"></option>
+        </select>
+    </div>
+
+    <div>
+        <label for="organizationId">Organization:</label>
+        <select id="organizationId" th:field="*{organizationId}">
+            <option th:each="org : ${organizations}"
+                    th:value="${org.getId()}" th:text="${org.getName()}"></option>
+        </select>
+    </div>
+
+    <div>
+        <label for="bannerUrl">Banner URL:</label>
+        <input type="text" id="bannerUrl" th:field="*{bannerUrl}" />
+    </div>
+
+    <button type="submit">Save Event</button>
+</form>
 </body>
 </html>
