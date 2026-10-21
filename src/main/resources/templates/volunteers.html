@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Volunteers - Helping Hands</title>
+    <title th:text="#{volunteers.title}">Overview of Volunteers</title>
 </head>
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
 
-<h1>All Volunteers</h1>
+<h1 th:text="#{volunteers.title}">All Volunteers</h1>
 <a th:href="@{/volunteers/add}">+ Add Volunteer</a>
 
 <table>
@@ -15,10 +15,11 @@
     <tr>
         <th>ID</th>
         <th>Avatar</th>
-        <th>Full Name</th>
-        <th>Email</th>
-        <th>Birth Date</th>
-        <th>Student</th>
+        <th th:text="#{volunteers.table.firstName}">First Name</th>
+        <th th:text="#{volunteers.table.lastName}">Last Name</th>
+        <th th:text="#{volunteers.table.email}">Email</th>
+        <th th:text="#{volunteers.table.birthdate}">Birth Date</th>
+        <th th:text="#{volunteers.table.student}">Student</th>
     </tr>
     </thead>
     <tbody>
@@ -32,7 +33,7 @@
     </tr>
     </tbody>
 </table>
-<p>Total volunteers: <span th:text="${#lists.size(volunteers)}">0</span></p>
+<p th:text="volunteers.total">Total volunteers: <span th:text="${#lists.size(volunteers)}">0</span></p>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
