@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:fragment="navbar">
+  <a th:href="@{/events}">Events</a>
+  <a th:href="@{/organizations}">Organizations</a>
+  <a th:href="@{/volunteers}">Volunteers</a>
+</nav>
+</body>
+</html>
