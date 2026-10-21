@@ -46,7 +46,7 @@ public class EventController {
                 eventForm.getCategory(),
                 eventForm.getStatus(),
                 eventForm.getBannerUrl(),
-                eventForm.getOrganizationId(),
+                null,
                 eventForm.getLocation());
         eventService.addEvent(newEvent);
         return "redirect:/events";

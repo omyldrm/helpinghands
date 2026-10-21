@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class DefaultOrganizationService implements OrganizationService {
@@ -43,5 +44,16 @@ public class DefaultOrganizationService implements OrganizationService {
     @Override
     public List<Organization> getAllOrganizations() {
         return organizationRepository.getAllOrganizations();
+    }
+
+    @Override
+    public Organization getOrganizationById(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Organization ID can't be null.");
+        }
+        return organizationRepository.getAllOrganizations().stream()
+                .filter(org -> Objects.equals(org.getId(), id)).
+                findFirst().
+                orElseThrow(() -> new IllegalArgumentException("No organization found with ID: " + id));
     }
 }
