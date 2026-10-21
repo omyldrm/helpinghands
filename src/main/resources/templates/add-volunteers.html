@@ -2,35 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Volunteer - Helping Hands</title>
+    <title th:text="#{add-volunteers.title}">Add New Volunteer</title>
 </head>
 <body>
-<nav>
-    <a th:href="@{/events}">Events</a>
-    <a th:href="@{/organizations}">Organizations</a>
-    <a th:href="@{/volunteers}">Volunteers</a>
-</nav>
+<nav th:replace="~{fragments/nav :: navbar}"></nav>
 
-<h1>Add New Volunteer</h1>
+<h1 th:text="#{add-volunteers.title}">Add New Volunteer</h1>
 
 <form th:action="@{/volunteers/add}" th:object="${volunteerForm}" method="post">
     <div>
-        <label for="firstName">First Name:</label>
+        <label for="firstName" th:text="#{add-volunteers.form.firstName}">First Name:</label>
         <input type="text" id="firstName" th:field="*{firstName}" required />
     </div>
 
     <div>
-        <label for="lastName">Last Name:</label>
+        <label for="lastName" th:text="#{add-volunteers.form.lastName}">Last Name:</label>
         <input type="text" id="lastName" th:field="*{lastName}" required />
     </div>
 
     <div>
-        <label for="email">Email Address:</label>
+        <label for="email" th:text="#{add-volunteers.form.email}">Email Address:</label>
         <input type="email" id="email" th:field="*{email}" required />
     </div>
 
     <div>
-        <label for="birthDate">Birth Date:</label>
+        <label for="birthDate" th:text="#{add-volunteers.form.birthdate}">Birth Date:</label>
         <input type="date" id="birthDate" th:field="*{birthDate}" required />
     </div>
 
@@ -48,5 +44,6 @@
 
     <button type="submit">Save Volunteer</button>
 </form>
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
