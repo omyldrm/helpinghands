@@ -29,7 +29,12 @@
     <tbody>
     <tr th:each="org : ${organizations}">
         <td th:text="${org.getId()}">1</td>
-        <td><img th:if="${org.getLogoUrl() != null}" th:src="${org.getLogoUrl()}" alt="Logo"/></td>
+        <td>
+            <img th:if="${org.getLogoUrl() != null}"
+                 th:src="${org.getLogoUrl()}"
+                 alt="Logo"
+                 style="height: 40px; max-width: 120px; object-fit: contain;" />
+        </td>
         <td th:text="${org.getName()}">Org Name</td>
         <td th:text="${org.getFoundedDate()}">2020-01-01</td>
         <td th:text="${org.getAverageRating()}">4.5</td>

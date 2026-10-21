@@ -9,4 +9,5 @@ public interface OrganizationService {
     void addOrganization(Organization organization);
     List<Organization> getAllOrganizations();
     Organization createOrganization(String name, LocalDate foundedDate);
+    Organization getOrganizationById(Long id);
 }
