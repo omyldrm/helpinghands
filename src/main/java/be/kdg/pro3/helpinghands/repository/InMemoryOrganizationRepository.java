@@ -34,7 +34,7 @@ public class InMemoryOrganizationRepository implements OrganizationRepository {
                 newId
         );
 
-        organizations.add(organization);
+        organizations.add(savedOrg);
     }
 
     @Override
