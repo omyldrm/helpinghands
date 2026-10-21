@@ -2,25 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Events - Helping Hands</title>
+    <title th:text="#{events.title}">Overview of Events</title>
 </head>
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
 
-<h1>All Events</h1>
+<h1 th:text="#{events.title}">All Events</h1>
 <a th:href="@{/events/add}">+ Add Event</a>
 
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Location</th>
-        <th>Category</th>
-        <th>Status</th>
-        <th>Max Volunteers</th>
-        <th>Organization</th>
+        <th th:text="#{events.table.title}">Title</th>
+        <th th:text="#{events.table.date}">Date</th>
+        <th th:text="#{events.table.location}">Location</th>
+        <th th:text="#{events.table.category}">Category</th>
+        <th th:text="#{events.table.status}">Status</th>
+        <th th:text="#{events.table.maxVolunteers}">Max Volunteers</th>
+        <th th:text="#{events.table.organization}">Organization</th>
     </tr>
     </thead>
     <tbody>
