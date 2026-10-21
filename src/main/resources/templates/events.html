@@ -5,11 +5,7 @@
     <title>Events - Helping Hands</title>
 </head>
 <body>
-<nav>
-    <a th:href="@{/events}">Events</a>
-    <a th:href="@{/organizations}">Organizations</a>
-    <a th:href="@{/volunteers}">Volunteers</a>
-</nav>
+<nav th:replace="~{fragments/nav :: navbar}"></nav>
 
 <h1>All Events</h1>
 <a th:href="@{/events/add}">+ Add Event</a>
