@@ -5,11 +5,7 @@
     <title>Volunteers - Helping Hands</title>
 </head>
 <body>
-<nav>
-    <a th:href="@{/events}">Events</a>
-    <a th:href="@{/organizations}">Organizations</a>
-    <a th:href="@{/volunteers}">Volunteers</a>
-</nav>
+<nav th:replace="~{fragments/nav :: navbar}"></nav>
 
 <h1>All Volunteers</h1>
 <a th:href="@{/volunteers/add}">+ Add Volunteer</a>
