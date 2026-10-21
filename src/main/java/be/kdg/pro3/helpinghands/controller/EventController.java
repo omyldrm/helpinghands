@@ -1,6 +1,7 @@
 package be.kdg.pro3.helpinghands.controller;
 
 import be.kdg.pro3.helpinghands.domain.Event;
+import be.kdg.pro3.helpinghands.domain.Organization;
 import be.kdg.pro3.helpinghands.service.EventService;
 import be.kdg.pro3.helpinghands.service.OrganizationService;
 import be.kdg.pro3.helpinghands.web.EventForm;
@@ -36,8 +37,9 @@ public class EventController {
         return "add-events";
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public String submitAddEvent(@ModelAttribute("eventForm") EventForm eventForm) {
+        Organization organization = organizationService.getOrganizationById(eventForm.getOrganizationId());
         Event newEvent = new Event(eventForm.getTitle(),
                 eventForm.getEventDate(),
                 eventForm.getMaxVolunteers(),

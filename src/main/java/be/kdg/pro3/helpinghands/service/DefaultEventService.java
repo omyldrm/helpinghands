@@ -27,9 +27,6 @@ public class DefaultEventService implements EventService{
         if (event == null) {
             throw new IllegalArgumentException("Event can't be empty.");
         }
-        if (event.getId() == null || eventRepository.existsById(event.getId())) {
-            throw new IllegalArgumentException("An event needs a unique ID.");
-        }
         if (event.getTitle() == null || event.getTitle().isBlank()) {
             throw new IllegalArgumentException("An event needs a title.");
         }
