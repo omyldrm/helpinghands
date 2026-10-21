@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Organizations - Helping Hands</title>
+    <title th:text="#{organizations.title}">Overview of Organizations</title>
 </head>
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
@@ -14,12 +14,11 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>Logo</th>
-        <th>Name</th>
-        <th>Founded Date</th>
-        <th>Rating</th>
-        <th>Verified</th>
-        <th>Total Events</th>
+        <th th:text="#{organizations.table.logo}">Logo</th>
+        <th th:text="#{organizations.table.name}">Name</th>
+        <th th:text="#{organizations.table.founded}">Founded Date</th>
+        <th th:text="#{organizations.table.rating}">Rating</th>
+        <th th:text="#{organizations.table.verified}">Verified</th>
     </tr>
     </thead>
     <tbody>
@@ -39,7 +38,7 @@
     </tr>
     </tbody>
 </table>
-<p>Total organizations: <span th:text="${#lists.size(organizations)}">0</span></p>
+<p th:text="#{organizations.total}">Total organizations: <span th:text="${#lists.size(organizations)}">0</span></p>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
