@@ -10,11 +10,12 @@
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
 
+<div class="container">
 <main>
-
-    <h1>All Organizations</h1>
-    <a th:href="@{/organizations/add}">+ Add Organization</a>
-
+    <div class="row">
+        <h1>All Organizations</h1>
+        <a th:href="@{/organizations/add}">+ Add Organization</a>
+    </div>
     <table>
         <thead>
         <tr>
@@ -46,5 +47,6 @@
     <p th:text="#{organizations.total}">Total organizations: <span th:text="${#lists.size(organizations)}">0</span></p>
 </main>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
+</div>
 </body>
 </html>

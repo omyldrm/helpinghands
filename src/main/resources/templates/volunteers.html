@@ -9,37 +9,40 @@
 </head>
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
+<div class="container">
 
-<main>
-    <h1 th:text="#{volunteers.title}">All Volunteers</h1>
-    <a th:href="@{/volunteers/add}">+ Add Volunteer</a>
-
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Avatar</th>
-            <th th:text="#{volunteers.table.firstName}">First Name</th>
-            <th th:text="#{volunteers.table.lastName}">Last Name</th>
-            <th th:text="#{volunteers.table.email}">Email</th>
-            <th th:text="#{volunteers.table.birthdate}">Birth Date</th>
-            <th th:text="#{volunteers.table.student}">Student</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="volunteer : ${volunteers}">
-            <td th:text="${volunteer.getId()}">1</td>
-            <td><img th:if="${volunteer.getAvatarUrl() != null}" th:src="${volunteer.getAvatarUrl()}" alt="Avatar"/>
-            </td>
-            <td th:text="${volunteer.getFullName()}">John Doe</td>
-            <td th:text="${volunteer.getEmail()}">Email Address</td>
-            <td th:text="${volunteer.getBirthDate()}">2000-01-01</td>
-            <td th:text="${volunteer.isStudent() ? 'Yes' : 'No'}">Yes</td>
-        </tr>
-        </tbody>
-    </table>
-    <p th:text="volunteers.total">Total volunteers: <span th:text="${#lists.size(volunteers)}">0</span></p>
-</main>
-<footer th:replace="~{fragments/footer :: footer}"></footer>
+    <main>
+        <div class="row">
+            <h1 th:text="#{volunteers.title}">All Volunteers</h1>
+            <a th:href="@{/volunteers/add}">+ Add Volunteer</a>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Avatar</th>
+                <th th:text="#{volunteers.table.firstName}">First Name</th>
+                <th th:text="#{volunteers.table.lastName}">Last Name</th>
+                <th th:text="#{volunteers.table.email}">Email</th>
+                <th th:text="#{volunteers.table.birthdate}">Birth Date</th>
+                <th th:text="#{volunteers.table.student}">Student</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="volunteer : ${volunteers}">
+                <td th:text="${volunteer.getId()}">1</td>
+                <td><img th:if="${volunteer.getAvatarUrl() != null}" th:src="${volunteer.getAvatarUrl()}" alt="Avatar"/>
+                </td>
+                <td th:text="${volunteer.getFullName()}">John Doe</td>
+                <td th:text="${volunteer.getEmail()}">Email Address</td>
+                <td th:text="${volunteer.getBirthDate()}">2000-01-01</td>
+                <td th:text="${volunteer.isStudent() ? 'Yes' : 'No'}">Yes</td>
+            </tr>
+            </tbody>
+        </table>
+        <p th:text="volunteers.total">Total volunteers: <span th:text="${#lists.size(volunteers)}">0</span></p>
+    </main>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+</div>
 </body>
 </html>

@@ -11,12 +11,14 @@
 
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
 
+<div class="container">
 <main>
-
-    <header>
-        <h1 th:text="#{index.welcome}">Welcome to Helping Hands</h1>
-        <p th:text="#{index.subtitle}">Connecting volunteers with meaningful community events and organizations.</p>
-    </header>
+    <div class="row">
+        <header>
+            <h1 th:text="#{index.welcome}">Welcome to Helping Hands</h1>
+            <p th:text="#{index.subtitle}">Connecting volunteers with meaningful community events and organizations.</p>
+        </header>
+    </div>
 
     <section>
         <h2 th:text="#{index.explore}">Explore Our Platform</h2>
@@ -42,8 +44,7 @@
         </ul>
     </section>
 </main>
-
 <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+</div>
 </body>
 </html>
