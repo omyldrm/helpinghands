@@ -12,36 +12,37 @@
 
 <h1>All Organizations</h1>
 <a th:href="@{/organizations/add}">+ Add Organization</a>
-
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th th:text="#{organizations.table.logo}">Logo</th>
-        <th th:text="#{organizations.table.name}">Name</th>
-        <th th:text="#{organizations.table.founded}">Founded Date</th>
-        <th th:text="#{organizations.table.rating}">Rating</th>
-        <th th:text="#{organizations.table.verified}">Verified</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="org : ${organizations}">
-        <td th:text="${org.getId()}">1</td>
-        <td>
-            <img th:if="${org.getLogoUrl() != null}"
-                 th:src="${org.getLogoUrl()}"
-                 alt="Logo"
-                 style="height: 40px; max-width: 120px; object-fit: contain;" />
-        </td>
-        <td th:text="${org.getName()}">Org Name</td>
-        <td th:text="${org.getFoundedDate()}">2020-01-01</td>
-        <td th:text="${org.getAverageRating()}">4.5</td>
-        <td th:text="${org.isVerified() ? 'Yes' : 'No'}">Yes</td>
-        <td th:text="${org.getEvents() != null ? org.getEvents().size() : 0}">0</td>
-    </tr>
-    </tbody>
-</table>
-<p th:text="#{organizations.total}">Total organizations: <span th:text="${#lists.size(organizations)}">0</span></p>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th th:text="#{organizations.table.logo}">Logo</th>
+            <th th:text="#{organizations.table.name}">Name</th>
+            <th th:text="#{organizations.table.founded}">Founded Date</th>
+            <th th:text="#{organizations.table.rating}">Rating</th>
+            <th th:text="#{organizations.table.verified}">Verified</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="org : ${organizations}">
+            <td th:text="${org.getId()}">1</td>
+            <td>
+                <img th:if="${org.getLogoUrl() != null}"
+                     th:src="${org.getLogoUrl()}"
+                     alt="Logo"
+                     style="height: 40px; max-width: 120px; object-fit: contain;"/>
+            </td>
+            <td th:text="${org.getName()}">Org Name</td>
+            <td th:text="${org.getFoundedDate()}">2020-01-01</td>
+            <td th:text="${org.getAverageRating()}">4.5</td>
+            <td th:text="${org.isVerified() ? 'Yes' : 'No'}">Yes</td>
+            <td th:text="${org.getEvents() != null ? org.getEvents().size() : 0}">0</td>
+        </tr>
+        </tbody>
+    </table>
+    <p th:text="#{organizations.total}">Total organizations: <span th:text="${#lists.size(organizations)}">0</span></p>
+</main>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

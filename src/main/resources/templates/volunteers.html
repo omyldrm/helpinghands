@@ -13,6 +13,7 @@
 <h1 th:text="#{volunteers.title}">All Volunteers</h1>
 <a th:href="@{/volunteers/add}">+ Add Volunteer</a>
 
+<main>
 <table>
     <thead>
     <tr>
@@ -37,6 +38,7 @@
     </tbody>
 </table>
 <p th:text="volunteers.total">Total volunteers: <span th:text="${#lists.size(volunteers)}">0</span></p>
+</main>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>
