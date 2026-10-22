@@ -10,8 +10,11 @@
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
 
+<div class="container">
 <main>
-    <h1 th:text="#{add-volunteers.title}">Add New Volunteer</h1>
+    <div class="row">
+        <h1 th:text="#{add-volunteers.title}">Add New Volunteer</h1>
+    </div>
 
     <form th:action="@{/volunteers/add}" th:object="${volunteerForm}" method="post">
         <div>
@@ -50,5 +53,6 @@
     </form>
 </main>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
+</div>
 </body>
 </html>

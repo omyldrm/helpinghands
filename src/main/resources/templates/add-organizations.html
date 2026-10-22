@@ -9,8 +9,11 @@
 </head>
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
+<div class="container">
 <main>
-    <h1 th:text="#{add-organizations.title}">Add New Organization</h1>
+    <div class="row">
+        <h1 th:text="#{add-organizations.title}">Add New Organization</h1>
+    </div>
 
     <form th:action="@{/organizations/add}" th:object="${organizationForm}" method="post">
         <div>
@@ -43,5 +46,6 @@
     </form>
     <footer th:replace="~{fragments/footer :: footer}"></footer>
 </main>
+</div>
 </body>
 </html>
