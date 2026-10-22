@@ -9,38 +9,39 @@
 </head>
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
+<main>
+    <h1 th:text="#{add-organizations.title}">Add New Organization</h1>
 
-<h1 th:text="#{add-organizations.title}">Add New Organization</h1>
+    <form th:action="@{/organizations/add}" th:object="${organizationForm}" method="post">
+        <div>
+            <label for="name" th:text="#{add-organizations.form.name}">Name:</label>
+            <input type="text" id="name" th:field="*{name}" required/>
+        </div>
 
-<form th:action="@{/organizations/add}" th:object="${organizationForm}" method="post">
-    <div>
-        <label for="name" th:text="#{add-organizations.form.name}">Name:</label>
-        <input type="text" id="name" th:field="*{name}" required />
-    </div>
+        <div>
+            <label for="foundedDate" th:text="#{add-organizations.form.founded}">Founded Date:</label>
+            <input type="date" id="foundedDate" th:field="*{foundedDate}" required/>
+        </div>
 
-    <div>
-        <label for="foundedDate" th:text="#{add-organizations.form.founded}">Founded Date:</label>
-        <input type="date" id="foundedDate" th:field="*{foundedDate}" required />
-    </div>
+        <div>
+            <label for="averageRating" th:text="#{add-organizations.form.rating}">Average Rating (0.0 - 5.0):</label>
+            <input type="number" id="averageRating" step="0.1" min="0" max="5" th:field="*{averageRating}" required/>
+        </div>
 
-    <div>
-        <label for="averageRating" th:text="#{add-organizations.form.rating}">Average Rating (0.0 - 5.0):</label>
-        <input type="number" id="averageRating" step="0.1" min="0" max="5" th:field="*{averageRating}" required />
-    </div>
-
-    <div>
-        <label for="verified" th:text="#{add-organizations.form.verified}">
-            Verified: </label>
+        <div>
+            <label for="verified" th:text="#{add-organizations.form.verified}">
+                Verified: </label>
             <input type="checkbox" id="verified" th:field="*{verified}"/>
-    </div>
+        </div>
 
-    <div>
-        <label for="logoUrl" th:text="#{add-organizations.form.logoUrl}">Logo URL:</label>
-        <input type="url" id="logoUrl" th:field="*{logoUrl}" />
-    </div>
+        <div>
+            <label for="logoUrl" th:text="#{add-organizations.form.logoUrl}">Logo URL:</label>
+            <input type="url" id="logoUrl" th:field="*{logoUrl}"/>
+        </div>
 
-    <button type="submit" th:text="#{add-organizations.button.submit}">Save Organization</button>
-</form>
-<footer th:replace="~{fragments/footer :: footer}"></footer>
+        <button type="submit" th:text="#{add-organizations.button.submit}">Save Organization</button>
+    </form>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+</main>
 </body>
 </html>

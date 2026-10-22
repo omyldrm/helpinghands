@@ -10,43 +10,45 @@
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
 
-<h1 th:text="#{add-volunteers.title}">Add New Volunteer</h1>
+<main>
+    <h1 th:text="#{add-volunteers.title}">Add New Volunteer</h1>
 
-<form th:action="@{/volunteers/add}" th:object="${volunteerForm}" method="post">
-    <div>
-        <label for="firstName" th:text="#{add-volunteers.form.firstName}">First Name:</label>
-        <input type="text" id="firstName" th:field="*{firstName}" required />
-    </div>
+    <form th:action="@{/volunteers/add}" th:object="${volunteerForm}" method="post">
+        <div>
+            <label for="firstName" th:text="#{add-volunteers.form.firstName}">First Name:</label>
+            <input type="text" id="firstName" th:field="*{firstName}" required/>
+        </div>
 
-    <div>
-        <label for="lastName" th:text="#{add-volunteers.form.lastName}">Last Name:</label>
-        <input type="text" id="lastName" th:field="*{lastName}" required />
-    </div>
+        <div>
+            <label for="lastName" th:text="#{add-volunteers.form.lastName}">Last Name:</label>
+            <input type="text" id="lastName" th:field="*{lastName}" required/>
+        </div>
 
-    <div>
-        <label for="email" th:text="#{add-volunteers.form.email}">Email Address:</label>
-        <input type="email" id="email" th:field="*{email}" required />
-    </div>
+        <div>
+            <label for="email" th:text="#{add-volunteers.form.email}">Email Address:</label>
+            <input type="email" id="email" th:field="*{email}" required/>
+        </div>
 
-    <div>
-        <label for="birthDate" th:text="#{add-volunteers.form.birthdate}">Birth Date:</label>
-        <input type="date" id="birthDate" th:field="*{birthDate}" required />
-    </div>
+        <div>
+            <label for="birthDate" th:text="#{add-volunteers.form.birthdate}">Birth Date:</label>
+            <input type="date" id="birthDate" th:field="*{birthDate}" required/>
+        </div>
 
-    <div>
-        <label>
-            <input type="checkbox" th:field="*{student}" />
-            Is Student
-        </label>
-    </div>
+        <div>
+            <label>
+                <input type="checkbox" th:field="*{student}"/>
+                Is Student
+            </label>
+        </div>
 
-    <div>
-        <label for="avatarUrl">Avatar URL:</label>
-        <input type="url" id="avatarUrl" th:field="*{avatarUrl}" />
-    </div>
+        <div>
+            <label for="avatarUrl">Avatar URL:</label>
+            <input type="url" id="avatarUrl" th:field="*{avatarUrl}"/>
+        </div>
 
-    <button type="submit">Save Volunteer</button>
-</form>
+        <button type="submit">Save Volunteer</button>
+    </form>
+</main>
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 </html>

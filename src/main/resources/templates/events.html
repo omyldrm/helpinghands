@@ -10,8 +10,10 @@
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
 
-<h1 th:text="#{events.title}">All Events</h1>
-<a th:href="@{/events/add}">+ Add Event</a>
+<div>
+    <h1 th:text="#{events.title}">All Events</h1>
+    <a th:href="@{/events/add}">+ Add Event</a>
+</div>
 
 <main>
     <table>
