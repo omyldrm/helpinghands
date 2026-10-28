@@ -8,47 +8,47 @@
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
     <title th:text="#{index.title}">Helping Hands - Welcome</title>
 </head>
-<body class="bg-light">
+<body>
 
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
 
 <div class="container my-4">
-    <main>
-        <header class="p-5 mb-5 bg-primary text-white rounded-4 shadow-sm">
-            <h1 class="display-5 fw-bold" th:text="#{index.welcome}">Welcome to Helping Hands</h1>
-            <p class="lead mb-0" th:text="#{index.subtitle}">Connecting volunteers with meaningful community events and organizations.</p>
+    <main class="mb-5">
+        <header class="mb-4">
+            <h1 th:text="#{index.welcome}">Welcome to Helping Hands</h1>
+            <p th:text="#{index.subtitle}">Connecting volunteers with meaningful community events and organizations.</p>
         </header>
 
         <section>
-            <h2 class="mb-4" th:text="#{index.explore}">Explore Our Platform</h2>
+            <h2 class="h4 mb-3" th:text="#{index.explore}">Explore Our Platform</h2>
 
-            <div class="row g-4">
+            <div class="row g-3">
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100">
                         <div class="card-body d-flex flex-column">
-                            <h3 class="card-title h4" th:text="#{nav.events}">Events</h3>
-                            <p class="card-text text-muted" th:text="#{index.events.desc}">Discover upcoming volunteering opportunities and register to help out.</p>
-                            <a th:href="@{/events}" class="btn btn-primary mt-auto" th:text="#{nav.events}">View Events</a>
+                            <h3 class="h5" th:text="#{nav.events}">Events</h3>
+                            <p th:text="#{index.events.desc}">Discover upcoming volunteering opportunities and register to help out.</p>
+                            <a th:href="@{/events}" class="btn btn-outline-dark mt-auto" th:text="#{nav.events}">View Events</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100">
                         <div class="card-body d-flex flex-column">
-                            <h3 class="card-title h4" th:text="#{nav.organizations}">Organizations</h3>
-                            <p class="card-text text-muted" th:text="#{index.organizations.desc}">Browse registered non-profits and community organizations.</p>
-                            <a th:href="@{/organizations}" class="btn btn-primary mt-auto" th:text="#{nav.organizations}">View Organizations</a>
+                            <h3 class="h5" th:text="#{nav.organizations}">Organizations</h3>
+                            <p th:text="#{index.organizations.desc}">Browse registered non-profits and community organizations.</p>
+                            <a th:href="@{/organizations}" class="btn btn-outline-dark mt-auto" th:text="#{nav.organizations}">View Organizations</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm">
+                    <div class="card h-100">
                         <div class="card-body d-flex flex-column">
-                            <h3 class="card-title h4" th:text="#{nav.volunteers}">Volunteers</h3>
-                            <p class="card-text text-muted" th:text="#{index.volunteers.desc}">Meet the dedicated people driving positive change in the community.</p>
-                            <a th:href="@{/volunteers}" class="btn btn-primary mt-auto" th:text="#{nav.volunteers}">View Volunteers</a>
+                            <h3 class="h5" th:text="#{nav.volunteers}">Volunteers</h3>
+                            <p th:text="#{index.volunteers.desc}">Meet the dedicated people driving positive change in the community.</p>
+                            <a th:href="@{/volunteers}" class="btn btn-outline-dark mt-auto" th:text="#{nav.volunteers}">View Volunteers</a>
                         </div>
                     </div>
                 </div>
