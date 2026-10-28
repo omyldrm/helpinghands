@@ -2,13 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Navbar fragment</title>
 </head>
 <body>
-<nav th:fragment="navbar">
-  <a th:href="@{/events}">Events</a>
-  <a th:href="@{/organizations}">Organizations</a>
-  <a th:href="@{/volunteers}">Volunteers</a>
+
+<nav th:fragment="navbar" class="navbar navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Helping Hands</a>
+        <div class="navbar-nav flex-row gap-3">
+            <a class="nav-link" th:href="@{/events}" th:text="#{nav.events}">Events</a>
+            <a class="nav-link" th:href="@{/organizations}" th:text="#{nav.organizations}">Organizations</a>
+            <a class="nav-link" th:href="@{/volunteers}" th:text="#{nav.volunteers}">Volunteers</a>
+        </div>
+    </div>
 </nav>
+
 </body>
 </html>
