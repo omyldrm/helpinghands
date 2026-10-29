@@ -16,13 +16,12 @@
             <h1 th:text="#{volunteers.title}">All Volunteers</h1>
             <a th:href="@{/volunteers/add}">+ Add Volunteer</a>
         </div>
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Avatar</th>
-                <th th:text="#{volunteers.table.firstName}">First Name</th>
-                <th th:text="#{volunteers.table.lastName}">Last Name</th>
+                <th th:text="#{volunteers.table.fullName}">Name</th>
                 <th th:text="#{volunteers.table.email}">Email</th>
                 <th th:text="#{volunteers.table.birthdate}">Birth Date</th>
                 <th th:text="#{volunteers.table.student}">Student</th>
@@ -40,7 +39,7 @@
             </tr>
             </tbody>
         </table>
-        <p th:text="volunteers.total">Total volunteers: <span th:text="${#lists.size(volunteers)}">0</span></p>
+        <p th:text="#{volunteers.total}">Total volunteers: <span th:text="${#lists.size(volunteers)}">0</span></p>
     </main>
     <footer th:replace="~{fragments/footer :: footer}"></footer>
 </div>
