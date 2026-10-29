@@ -16,7 +16,7 @@
         <h1>All Organizations</h1>
         <a th:href="@{/organizations/add}">+ Add Organization</a>
     </div>
-    <table>
+    <table class="table">
         <thead>
         <tr>
             <th>ID</th>
@@ -25,6 +25,7 @@
             <th th:text="#{organizations.table.founded}">Founded Date</th>
             <th th:text="#{organizations.table.rating}">Rating</th>
             <th th:text="#{organizations.table.verified}">Verified</th>
+            <th th:text="#{organizations.table.numEvents}"># Events</th>
         </tr>
         </thead>
         <tbody>
