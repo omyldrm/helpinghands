@@ -1,10 +1,10 @@
-package be.kdg.pro3.helpinghands.controller;
+package be.kdg.pro3.helpinghands.presentation.controller;
 
 import be.kdg.pro3.helpinghands.domain.Event;
 import be.kdg.pro3.helpinghands.domain.Organization;
 import be.kdg.pro3.helpinghands.service.EventService;
 import be.kdg.pro3.helpinghands.service.OrganizationService;
-import be.kdg.pro3.helpinghands.web.EventForm;
+import be.kdg.pro3.helpinghands.presentation.web.EventForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

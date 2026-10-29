@@ -1,4 +1,4 @@
-package be.kdg.pro3.helpinghands.web;
+package be.kdg.pro3.helpinghands.presentation.web;
 
 import be.kdg.pro3.helpinghands.domain.EventCategory;
 import be.kdg.pro3.helpinghands.domain.Status;
