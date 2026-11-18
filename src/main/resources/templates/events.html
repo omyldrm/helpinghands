@@ -13,13 +13,13 @@
 <div class="container my-4">
     <div class="row">
         <h1 th:text="#{events.title}">All Events</h1>
-        <a th:href="@{/events/add}">+ Add Event</a>
+        <a th:href="@{/events/add}" th:text="#{events.button.add}">+ Add Event</a>
     </div>
     <main>
         <table class="table">
             <thead>
             <tr>
-                <th>ID</th>
+                <th th:text="#{events.table.id}">ID</th>
                 <th th:text="#{events.table.title}">Title</th>
                 <th th:text="#{events.table.date}">Date</th>
                 <th th:text="#{events.table.location}">Location</th>
@@ -38,15 +38,15 @@
                 <td th:text="${event.getCategory()}">CONCERT</td>
                 <td th:text="${event.getStatus()}">PLANNED</td>
                 <td th:text="${event.getMaxVolunteers()}">10</td>
-                <td th:text="${event.getOrganization() != null ? event.getOrganization().getName() : 'None'}">
+                <td th:text="${event.getOrganization() != null ? event.getOrganization().getName() : #messages.msg('common.none')}">
                     Organization Name
                 </td>
             </tr>
             </tbody>
         </table>
-        <p>Total events: <span th:text="${#lists.size(events)}">0</span></p>
-</main>
-<footer th:replace="~{fragments/footer :: footer}"></footer>
+        <p><span th:text="#{events.totalCount}">Total events:</span> <span th:text="${#lists.size(events)}">0</span></p>
+    </main>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
 </div>
 </body>
 </html>

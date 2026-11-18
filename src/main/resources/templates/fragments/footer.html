@@ -3,10 +3,7 @@
 <body>
 
 <footer th:fragment="footer">
-    <p>
-        &copy; <span th:text="${#temporals.year(#temporals.createNow())}">2026</span>
-        Helping Hands. <span th:text="#{footer.rights}">All rights reserved.</span>
-    </p>
+    <p th:text="#{footer.copyright}">© 2026 Helping Hands Application. All rights reserved.</p>
 </footer>
 
 </body>
