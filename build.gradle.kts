@@ -19,6 +19,7 @@ dependencies {
     implementation("org.webjars:bootstrap:5.3.8")
     implementation("org.webjars:webjars-locator-lite:1.1.5")
     implementation("org.webjars.npm:bootstrap-icons:1.13.2")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 }
 
 tasks.withType<Test> {
