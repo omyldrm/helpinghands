@@ -9,50 +9,39 @@
 </head>
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
-
 <div class="container my-4">
     <main>
         <div class="row">
             <h1 th:text="#{add-volunteers.title}">Add New Volunteer</h1>
         </div>
 
-        <form th:action="@{/volunteers/add}" th:object="${volunteerForm}" method="post">
-            <div>
-                <label for="firstName" th:text="#{add-volunteers.form.firstName}">First Name:</label>
-                <input type="text" id="firstName" th:field="*{firstName}" required/>
+        <form class="col-lg-6" th:action="@{/volunteers/add}" th:object="${volunteerForm}" method="post" novalidate>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}" th:text="#{add-events.globalError}">
+                Please fix the errors below before submitting the form.
             </div>
 
-            <div>
-                <label for="lastName" th:text="#{add-volunteers.form.lastName}">Last Name:</label>
-                <input type="text" id="lastName" th:field="*{lastName}" required/>
+            <div class="mb-3">
+                <label for="firstName" class="form-label" th:text="#{add-volunteers.form.firstName}">First Name:</label>
+                <input type="text" id="firstName" class="form-control" th:field="*{firstName}" th:errorclass="is-invalid"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name error</div>
             </div>
 
-            <div>
-                <label for="email" th:text="#{add-volunteers.form.email}">Email Address:</label>
-                <input type="email" id="email" th:field="*{email}" required/>
+            <div class="mb-3">
+                <label for="lastName" class="form-label" th:text="#{add-volunteers.form.lastName}">Last Name:</label>
+                <input type="text" id="lastName" class="form-control" th:field="*{lastName}" th:errorclass="is-invalid"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name error</div>
             </div>
 
-            <div>
-                <label for="birthDate" th:text="#{add-volunteers.form.birthdate}">Birth Date:</label>
-                <input type="date" id="birthDate" th:field="*{birthDate}" required/>
+            <div class="mb-3">
+                <label for="email" class="form-label" th:text="#{add-volunteers.form.email}">Email Address:</label>
+                <input type="email" id="email" class="form-control" th:field="*{email}" th:errorclass="is-invalid"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
             </div>
 
-            <div>
-                <label>
-                    <input type="checkbox" th:field="*{student}"/>
-                    <span th:text="#{add-volunteers.form.student}">Is Student</span>
-                </label>
-            </div>
-
-            <div>
-                <label for="avatarUrl" th:text="#{add-volunteers.form.avatarUrl}">Avatar URL:</label>
-                <input type="url" id="avatarUrl" th:field="*{avatarUrl}"/>
-            </div>
-
-            <button type="submit" th:text="#{add-volunteers.button.submit}">Save Volunteer</button>
+            <button type="submit" class="btn btn-primary" th:text="#{add-volunteers.button.submit}">Save Volunteer</button>
         </form>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
     </main>
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
 </div>
 </body>
 </html>
