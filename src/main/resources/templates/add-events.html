@@ -15,70 +15,69 @@
             <h1 th:text="#{add-events.title}">Add New Event</h1>
         </div>
 
-        <form th:action="@{/events/add}" th:object="${eventForm}" method="post" novalidate>
+        <form class="col-lg-6" th:action="@{/events/add}" th:object="${eventForm}" method="post" novalidate>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}" th:text="#{add-events.globalError}">
                 Please fix the errors below before submitting the form.
             </div>
 
-            <div>
-                <label for="title" th:text="#{add-events.form.title}">Title:</label>
-                <input type="text" id="title" th:field="*{title}" required/>
-                <span class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</span>
+            <div class="mb-3">
+                <label for="title" class="form-label" th:text="#{add-events.form.title}">Title:</label>
+                <input type="text" id="title" class="form-control" th:field="*{title}" th:errorclass="is-invalid"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
             </div>
 
-            <div>
-                <label for="eventDate" th:text="#{add-events.form.date}">Event Date:</label>
-                <input type="date" id="eventDate" th:field="*{eventDate}" required/>
-                <span class="text-danger" th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}">Date error</span>
+            <div class="mb-3">
+                <label for="eventDate" class="form-label" th:text="#{add-events.form.date}">Event Date:</label>
+                <input type="date" id="eventDate" class="form-control" th:field="*{eventDate}" th:errorclass="is-invalid"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}">Date error</div>
             </div>
 
-            <div>
-                <label for="location" th:text="#{add-events.form.location}">Location:</label>
-                <input type="text" id="location" th:field="*{location}" required/>
-                <span class="text-danger" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Location error</span>
+            <div class="mb-3">
+                <label for="location" class="form-label" th:text="#{add-events.form.location}">Location:</label>
+                <input type="text" id="location" class="form-control" th:field="*{location}" th:errorclass="is-invalid"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Location error</div>
             </div>
 
-            <div>
-                <label for="maxVolunteers" th:text="#{add-events.form.maxVolunteers}">Max Volunteers:</label>
-                <input type="number" id="maxVolunteers" th:field="*{maxVolunteers}" required min="1"/>
-                <span class="text-danger" th:if="${#fields.hasErrors('maxVolunteers')}" th:errors="*{maxVolunteers}">Max volunteers error</span>
+            <div class="mb-3">
+                <label for="maxVolunteers" class="form-label" th:text="#{add-events.form.maxVolunteers}">Max Volunteers:</label>
+                <input type="number" id="maxVolunteers" class="form-control" th:field="*{maxVolunteers}" th:errorclass="is-invalid"/>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('maxVolunteers')}" th:errors="*{maxVolunteers}">Max volunteers error</div>
             </div>
 
-            <div>
-                <label for="category" th:text="#{add-events.form.category}">Category:</label>
-                <select id="category" th:field="*{category}">
+            <div class="mb-3">
+                <label for="category" class="form-label" th:text="#{add-events.form.category}">Category:</label>
+                <select id="category" class="form-select" th:field="*{category}" th:errorclass="is-invalid">
                     <option th:each="cat : ${T(be.kdg.pro3.helpinghands.domain.EventCategory).values()}"
                             th:value="${cat}" th:text="${cat}"></option>
                 </select>
-                <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category error</span>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Category error</div>
             </div>
 
-            <div>
-                <label for="status" th:text="#{add-events.form.status}">Status:</label>
-                <select id="status" th:field="*{status}">
+            <div class="mb-3">
+                <label for="status" class="form-label" th:text="#{add-events.form.status}">Status:</label>
+                <select id="status" class="form-select" th:field="*{status}" th:errorclass="is-invalid">
                     <option th:each="st : ${T(be.kdg.pro3.helpinghands.domain.Status).values()}"
                             th:value="${st}" th:text="${st}"></option>
                 </select>
-                <span class="text-danger" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Status error</span>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('status')}" th:errors="*{status}">Status error</div>
             </div>
 
-            <div>
-                <label for="organizationId" th:text="#{add-events.form.organization}">Organization:</label>
-                <select id="organizationId" th:field="*{organizationId}" required>
-                    <option value="" disabled="" selected="" th:text="#{add-events.form.selectOrganization}">-- Select Organization --</option>
+            <div class="mb-3">
+                <label for="organizationId" class="form-label" th:text="#{add-events.form.organization}">Organization:</label>
+                <select id="organizationId" class="form-select" th:field="*{organizationId}" th:errorclass="is-invalid">
+                    <option value="" th:text="#{add-events.form.selectOrganization}">-- Select Organization --</option>
                     <option th:each="org : ${organizations}"
                             th:value="${org.getId()}" th:text="${org.getName()}"></option>
                 </select>
-                <span class="text-danger" th:if="${#fields.hasErrors('organizationId')}" th:errors="*{organizationId}">Organization error</span>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('organizationId')}" th:errors="*{organizationId}">Organization error</div>
             </div>
 
-
-            <div>
-                <label for="bannerUrl" th:text="#{add-events.form.bannerUrl}">Banner URL:</label>
-                <input type="text" id="bannerUrl" th:field="*{bannerUrl}"/>
+            <div class="mb-3">
+                <label for="bannerUrl" class="form-label" th:text="#{add-events.form.bannerUrl}">Banner URL:</label>
+                <input type="text" id="bannerUrl" class="form-control" th:field="*{bannerUrl}"/>
             </div>
 
-            <button type="submit" th:text="#{add-events.button.submit}">Save Event</button>
+            <button type="submit" class="btn btn-primary" th:text="#{add-events.button.submit}">Save Event</button>
         </form>
         <footer th:replace="~{fragments/footer :: footer}"></footer>
     </main>
