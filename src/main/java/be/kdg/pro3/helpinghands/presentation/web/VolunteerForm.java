@@ -3,6 +3,9 @@ package be.kdg.pro3.helpinghands.presentation.web;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 public class VolunteerForm {
 
@@ -17,6 +20,13 @@ public class VolunteerForm {
     @NotBlank(message = "{validation.volunteer.email.notblank}")
     @Email(message = "{validation.volunteer.email.invalid}")
     private String email;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthDate;
+
+    private boolean student;
+
+    private String avatarUrl;
 
     public VolunteerForm() {
     }
@@ -43,5 +53,29 @@ public class VolunteerForm {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public boolean isStudent() {
+        return student;
+    }
+
+    public void setStudent(boolean student) {
+        this.student = student;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }
