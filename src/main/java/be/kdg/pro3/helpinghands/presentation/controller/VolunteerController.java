@@ -1,8 +1,8 @@
-package be.kdg.pro3.helpinghands.controller;
+package be.kdg.pro3.helpinghands.presentation.controller;
 
 import be.kdg.pro3.helpinghands.domain.Volunteer;
 import be.kdg.pro3.helpinghands.service.VolunteerService;
-import be.kdg.pro3.helpinghands.web.VolunteerForm;
+import be.kdg.pro3.helpinghands.presentation.web.VolunteerForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
