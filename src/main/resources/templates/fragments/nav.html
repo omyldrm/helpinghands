@@ -8,7 +8,7 @@
 
 <nav th:fragment="navbar" class="navbar border-bottom">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/}">Helping Hands</a>
+        <a class="navbar-brand" th:href="@{/}" th:text="#{nav.brand}">Helping Hands</a>
         <div class="navbar-nav flex-row gap-3">
             <a class="nav-link" th:href="@{/events}" th:text="#{nav.events}">Events</a>
             <a class="nav-link" th:href="@{/organizations}" th:text="#{nav.organizations}">Organizations</a>
