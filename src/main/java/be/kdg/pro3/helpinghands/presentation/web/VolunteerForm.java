@@ -1,13 +1,31 @@
 package be.kdg.pro3.helpinghands.presentation.web;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class VolunteerForm {
+
+    @NotBlank(message = "{validation.volunteer.firstName.notblank}")
+    @Size(min = 2, max = 50, message = "{validation.volunteer.firstName.size}")
     private String firstName;
+
+    @NotBlank(message = "{validation.volunteer.lastName.notblank}")
+    @Size(min = 2, max = 50, message = "{validation.volunteer.lastName.size}")
     private String lastName;
+
+    @NotBlank(message = "{validation.volunteer.email.notblank}")
+    @Email(message = "{validation.volunteer.email.invalid}")
     private String email;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
-    private boolean isStudent;
+
+    private boolean student;
+
     private String avatarUrl;
 
     public VolunteerForm() {
@@ -46,11 +64,11 @@ public class VolunteerForm {
     }
 
     public boolean isStudent() {
-        return isStudent;
+        return student;
     }
 
     public void setStudent(boolean student) {
-        isStudent = student;
+        this.student = student;
     }
 
     public String getAvatarUrl() {

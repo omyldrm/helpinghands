@@ -5,54 +5,54 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    <title th:text="#{add-volunteers.title}">Add New Volunteer</title>
+    <title th:text="#{add-organizations.title}">Add New Organization</title>
 </head>
 <body>
 <nav th:replace="~{fragments/nav :: navbar}"></nav>
-
 <div class="container my-4">
     <main>
         <div class="row">
-            <h1 th:text="#{add-volunteers.title}">Add New Volunteer</h1>
+            <h1 th:text="#{add-organizations.title}">Add New Organization</h1>
         </div>
 
-        <form th:action="@{/volunteers/add}" th:object="${volunteerForm}" method="post">
-            <div>
-                <label for="firstName" th:text="#{add-volunteers.form.firstName}">First Name:</label>
-                <input type="text" id="firstName" th:field="*{firstName}" required/>
+        <form th:action="@{/organizations/add}" th:object="${organizationForm}" method="post" novalidate>
+            <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}" th:text="#{add-events.globalError}">
+                Please fix the errors below before submitting the form.
             </div>
 
             <div>
-                <label for="lastName" th:text="#{add-volunteers.form.lastName}">Last Name:</label>
-                <input type="text" id="lastName" th:field="*{lastName}" required/>
+                <label for="name" th:text="#{add-organizations.form.name}">Name:</label>
+                <input type="text" id="name" th:field="*{name}" required/>
+                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
             </div>
 
             <div>
-                <label for="email" th:text="#{add-volunteers.form.email}">Email Address:</label>
-                <input type="email" id="email" th:field="*{email}" required/>
+                <label for="foundedDate" th:text="#{add-organizations.form.founded}">Founded Date:</label>
+                <input type="date" id="foundedDate" th:field="*{foundedDate}" required/>
+                <span class="text-danger" th:if="${#fields.hasErrors('foundedDate')}" th:errors="*{foundedDate}">Founded date error</span>
             </div>
 
             <div>
-                <label for="birthDate" th:text="#{add-volunteers.form.birthdate}">Birth Date:</label>
-                <input type="date" id="birthDate" th:field="*{birthDate}" required/>
+                <label for="averageRating" th:text="#{add-organizations.form.rating}">Average Rating (0.0 - 5.0):</label>
+                <input type="number" id="averageRating" step="0.1" min="0" max="5" th:field="*{averageRating}" required/>
+                <span class="text-danger" th:if="${#fields.hasErrors('averageRating')}" th:errors="*{averageRating}">Rating error</span>
             </div>
 
             <div>
-                <label>
-                    <input type="checkbox" th:field="*{student}"/>
-                    <span th:text="#{add-volunteers.form.student}">Is Student</span>
-                </label>
+                <label for="verified" th:text="#{add-organizations.form.verified}">
+                    Verified: </label>
+                <input type="checkbox" id="verified" th:field="*{verified}"/>
             </div>
 
             <div>
-                <label for="avatarUrl" th:text="#{add-volunteers.form.avatarUrl}">Avatar URL:</label>
-                <input type="url" id="avatarUrl" th:field="*{avatarUrl}"/>
+                <label for="logoUrl" th:text="#{add-organizations.form.logoUrl}">Logo URL:</label>
+                <input type="url" id="logoUrl" th:field="*{logoUrl}"/>
             </div>
 
-            <button type="submit" th:text="#{add-volunteers.button.submit}">Save Volunteer</button>
+            <button type="submit" th:text="#{add-organizations.button.submit}">Save Organization</button>
         </form>
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
     </main>
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
 </div>
 </body>
 </html>
