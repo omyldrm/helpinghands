@@ -54,11 +54,13 @@
 
         <div>
             <label for="organizationId" th:text="#{add-events.form.organization}">Organization:</label>
-            <select id="organizationId" th:field="*{organizationId}">
+            <select id="organizationId" th:field="*{organizationId}" required>
+                <option value="" disabled="" selected="">-- Select Organization --</option>
                 <option th:each="org : ${organizations}"
                         th:value="${org.getId()}" th:text="${org.getName()}"></option>
             </select>
         </div>
+
 
         <div>
             <label for="bannerUrl" th:text="#{add-events.form.bannerUrl}">Banner URL:</label>
