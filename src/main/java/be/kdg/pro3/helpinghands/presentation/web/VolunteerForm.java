@@ -1,14 +1,22 @@
 package be.kdg.pro3.helpinghands.presentation.web;
 
-import java.time.LocalDate;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class VolunteerForm {
+
+    @NotBlank(message = "{validation.volunteer.firstName.notblank}")
+    @Size(min = 2, max = 50, message = "{validation.volunteer.firstName.size}")
     private String firstName;
+
+    @NotBlank(message = "{validation.volunteer.lastName.notblank}")
+    @Size(min = 2, max = 50, message = "{validation.volunteer.lastName.size}")
     private String lastName;
+
+    @NotBlank(message = "{validation.volunteer.email.notblank}")
+    @Email(message = "{validation.volunteer.email.invalid}")
     private String email;
-    private LocalDate birthDate;
-    private boolean isStudent;
-    private String avatarUrl;
 
     public VolunteerForm() {
     }
@@ -35,29 +43,5 @@ public class VolunteerForm {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public boolean isStudent() {
-        return isStudent;
-    }
-
-    public void setStudent(boolean student) {
-        isStudent = student;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
     }
 }
