@@ -15,40 +15,41 @@
             <h1 th:text="#{add-organizations.title}">Add New Organization</h1>
         </div>
 
-        <form class="col-lg-6" th:action="@{/organizations/add}" th:object="${organizationForm}" method="post" novalidate>
+        <form th:action="@{/organizations/add}" th:object="${organizationForm}" method="post" novalidate>
             <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}" th:text="#{add-events.globalError}">
                 Please fix the errors below before submitting the form.
             </div>
 
-            <div class="mb-3">
-                <label for="name" class="form-label" th:text="#{add-organizations.form.name}">Name:</label>
-                <input type="text" id="name" class="form-control" th:field="*{name}" th:errorclass="is-invalid"/>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+            <div>
+                <label for="name" th:text="#{add-organizations.form.name}">Name:</label>
+                <input type="text" id="name" th:field="*{name}" required/>
+                <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</span>
             </div>
 
-            <div class="mb-3">
-                <label for="foundedDate" class="form-label" th:text="#{add-organizations.form.founded}">Founded Date:</label>
-                <input type="date" id="foundedDate" class="form-control" th:field="*{foundedDate}" th:errorclass="is-invalid"/>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('foundedDate')}" th:errors="*{foundedDate}">Founded date error</div>
+            <div>
+                <label for="foundedDate" th:text="#{add-organizations.form.founded}">Founded Date:</label>
+                <input type="date" id="foundedDate" th:field="*{foundedDate}" required/>
+                <span class="text-danger" th:if="${#fields.hasErrors('foundedDate')}" th:errors="*{foundedDate}">Founded date error</span>
             </div>
 
-            <div class="mb-3">
-                <label for="averageRating" class="form-label" th:text="#{add-organizations.form.rating}">Average Rating (0.0 - 5.0):</label>
-                <input type="number" id="averageRating" step="0.1" class="form-control" th:field="*{averageRating}" th:errorclass="is-invalid"/>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('averageRating')}" th:errors="*{averageRating}">Rating error</div>
+            <div>
+                <label for="averageRating" th:text="#{add-organizations.form.rating}">Average Rating (0.0 - 5.0):</label>
+                <input type="number" id="averageRating" step="0.1" min="0" max="5" th:field="*{averageRating}" required/>
+                <span class="text-danger" th:if="${#fields.hasErrors('averageRating')}" th:errors="*{averageRating}">Rating error</span>
             </div>
 
-            <div class="mb-3 form-check">
-                <input type="checkbox" id="verified" class="form-check-input" th:field="*{verified}"/>
-                <label for="verified" class="form-check-label" th:text="#{add-organizations.form.verified}">Verified:</label>
+            <div>
+                <label for="verified" th:text="#{add-organizations.form.verified}">
+                    Verified: </label>
+                <input type="checkbox" id="verified" th:field="*{verified}"/>
             </div>
 
-            <div class="mb-3">
-                <label for="logoUrl" class="form-label" th:text="#{add-organizations.form.logoUrl}">Logo URL:</label>
-                <input type="url" id="logoUrl" class="form-control" th:field="*{logoUrl}"/>
+            <div>
+                <label for="logoUrl" th:text="#{add-organizations.form.logoUrl}">Logo URL:</label>
+                <input type="url" id="logoUrl" th:field="*{logoUrl}"/>
             </div>
 
-            <button type="submit" class="btn btn-primary" th:text="#{add-organizations.button.submit}">Save Organization</button>
+            <button type="submit" th:text="#{add-organizations.button.submit}">Save Organization</button>
         </form>
         <footer th:replace="~{fragments/footer :: footer}"></footer>
     </main>
