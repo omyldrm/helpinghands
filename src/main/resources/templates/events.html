@@ -27,6 +27,7 @@
                 <th th:text="#{events.table.status}">Status</th>
                 <th th:text="#{events.table.maxVolunteers}">Max Volunteers</th>
                 <th th:text="#{events.table.organization}">Organization</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -40,6 +41,11 @@
                 <td th:text="${event.getMaxVolunteers()}">10</td>
                 <td th:text="${event.getOrganization() != null ? event.getOrganization().getName() : #messages.msg('common.none')}">
                     Organization Name
+                </td>
+                <td>
+                    <a th:href="@{/events/{id}(id=${event.getId()})}"
+                       class="btn btn-sm btn-outline-secondary"
+                       th:text="#{events.viewDetails}">View Details</a>
                 </td>
             </tr>
             </tbody>
