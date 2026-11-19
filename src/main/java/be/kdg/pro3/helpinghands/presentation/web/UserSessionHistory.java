@@ -9,7 +9,7 @@ import org.springframework.web.context.annotation.SessionScope;
 public class UserSessionHistory {
 
     public record PageVisit(String pageName, String Timestamp){
-        // here will be the records of tge visti
+        // here will be the records of the visit
     }
 
 }
