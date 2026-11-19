@@ -2,6 +2,7 @@ package be.kdg.pro3.helpinghands.presentation.controller;
 
 import be.kdg.pro3.helpinghands.domain.Event;
 import be.kdg.pro3.helpinghands.domain.Organization;
+import be.kdg.pro3.helpinghands.presentation.web.UserSessionHistory;
 import be.kdg.pro3.helpinghands.service.EventService;
 import be.kdg.pro3.helpinghands.service.OrganizationService;
 import be.kdg.pro3.helpinghands.presentation.web.EventForm;
@@ -9,20 +10,19 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/events")
 public class EventController {
     private final EventService eventService;
     private final OrganizationService organizationService;
+    private final UserSessionHistory sessionHistory;
 
-    public EventController(EventService eventService, OrganizationService organizationService) {
+    public EventController(EventService eventService, OrganizationService organizationService, UserSessionHistory sessionHistory) {
         this.eventService = eventService;
         this.organizationService = organizationService;
+        this.sessionHistory = sessionHistory;
     }
 
     // get mapping , calls services , puts data in model and returns html file name
@@ -60,5 +60,12 @@ public class EventController {
                 eventForm.getLocation());
         eventService.addEvent(newEvent);
         return "redirect:/events";
+    }
+
+    @GetMapping("/{id}")
+    public String showEventDetails(@PathVariable("id") Long id, Model model) {
+        Event event = eventService.getEventById(id);
+        sessionHistory.addVisit("Event Details (ID: " + id + ")");
+        model.addAttribute("event", event);
     }
 }

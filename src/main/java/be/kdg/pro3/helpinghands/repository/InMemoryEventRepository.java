@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Repository
 public class InMemoryEventRepository implements EventRepository {
@@ -82,5 +83,11 @@ public class InMemoryEventRepository implements EventRepository {
                 .max()
                 .orElse(0) + 1;
         // skips events without an ID, turns the rest into numbers, takes the max and adds 1
+    }
+
+    @Override
+    public Optional<Event> findById(Long id){
+        return events.stream()
+                .filter(e -> Objects.equals(e.getId(), id)).findFirst();
     }
 }

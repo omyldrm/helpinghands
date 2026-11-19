@@ -16,4 +16,5 @@ public interface EventService {
     List<Event> getEventsByDate(LocalDate date);
     Event createEvent(String title, LocalDate date, int maxVolunteers, EventCategory category,
                       Status status, String location, Long organizationId);
+    Event getEventById(Long id);
 }
