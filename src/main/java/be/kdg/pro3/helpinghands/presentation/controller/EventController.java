@@ -28,12 +28,14 @@ public class EventController {
     // get mapping , calls services , puts data in model and returns html file name
     @GetMapping
     public String showEvents(Model model) {
+        sessionHistory.addVisit("Events Overview");
         model.addAttribute("events", eventService.getAllEvents());
         return "events"; // loads src/main/resources/templates/events.html
     }
 
     @GetMapping("/add")
     public String showAddEventForm(Model model){
+        sessionHistory.addVisit("Add Event");
         model.addAttribute("eventForm", new EventForm());
         model.addAttribute("organizations", organizationService.getAllOrganizations());
         return "add-events";
