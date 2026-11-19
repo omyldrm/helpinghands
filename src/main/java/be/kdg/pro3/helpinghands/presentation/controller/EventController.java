@@ -67,5 +67,6 @@ public class EventController {
         Event event = eventService.getEventById(id);
         sessionHistory.addVisit("Event Details (ID: " + id + ")");
         model.addAttribute("event", event);
+        return "event-details";
     }
 }
