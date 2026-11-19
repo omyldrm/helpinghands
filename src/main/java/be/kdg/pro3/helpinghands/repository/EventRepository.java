@@ -7,6 +7,7 @@ import be.kdg.pro3.helpinghands.domain.Status;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface EventRepository {
     void addEvent(Event event);
@@ -17,4 +18,5 @@ public interface EventRepository {
     List<Event> getEventsByDate(LocalDate date);
     boolean existsById(Long id);
     long nextId();
+    Optional<Event> findById(Long id);
 }

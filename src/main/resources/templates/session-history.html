@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{history.title}">Session History</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+
+<nav th:replace="~{fragments/nav :: navbar}"></nav>
+
+<div class="container my-4">
+    <main>
+        <h1 class="mb-4" th:text="#{history.heading}">Visited Pages Log</h1>
+
+        <div th:if="${#lists.isEmpty(visits)}" class="alert alert-info">
+            <span th:text="#{history.empty}">No pages visited in this session yet.</span>
+        </div>
+
+        <div th:unless="${#lists.isEmpty(visits)}" class="table-responsive">
+            <table class="table table-striped table-hover align-middle">
+                <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th th:text="#{history.table.page}">Visited Page</th>
+                    <th th:text="#{history.table.timestamp}">Timestamp</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="visit, stat : ${visits}">
+                    <td th:text="${stat.count}">1</td>
+                    <td th:text="${visit.pageName}">Events Overview</td>
+                    <td th:text="${visit.timestamp}">2026-11-19 10:15:00</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+</div>
+</body>
+</html>

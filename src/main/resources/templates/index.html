@@ -23,7 +23,7 @@
             <h2 class="h4 mb-3" th:text="#{index.explore}">Explore Our Platform</h2>
 
             <div class="row g-3">
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column">
                             <h3 class="h5" th:text="#{nav.events}">Events</h3>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column">
                             <h3 class="h5" th:text="#{nav.organizations}">Organizations</h3>
@@ -43,12 +43,22 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card h-100">
                         <div class="card-body d-flex flex-column">
                             <h3 class="h5" th:text="#{nav.volunteers}">Volunteers</h3>
                             <p th:text="#{index.volunteers.desc}">Meet the dedicated people driving positive change in the community.</p>
                             <a th:href="@{/volunteers}" class="btn btn-outline-dark mt-auto" th:text="#{nav.volunteers}">View Volunteers</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="h5" th:text="#{nav.history}">Session History</h3>
+                            <p th:text="#{index.history.desc}">View your chronological page visit history for this browser session.</p>
+                            <a th:href="@{/history}" class="btn btn-outline-dark mt-auto" th:text="#{nav.history}">View History</a>
                         </div>
                     </div>
                 </div>

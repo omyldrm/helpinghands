@@ -92,4 +92,9 @@ public class DefaultEventService implements EventService{
         }
         return eventRepository.getEventsByOrg(id);
     }
+
+    @Override
+    public Event getEventById(Long id) {
+        return eventRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Event not found with ID: " + id));
+    }
 }
