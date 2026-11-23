@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Repository
+//@Repository
 public class InMemoryOrganizationRepository implements OrganizationRepository {
     private static final List<Organization> organizations = new ArrayList<>();
 

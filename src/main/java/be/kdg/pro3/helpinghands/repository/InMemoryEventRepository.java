@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-@Repository
+//@Repository
 public class InMemoryEventRepository implements EventRepository {
     private static final List<Event> events = new ArrayList<>();
 
