@@ -43,3 +43,9 @@ bin/
 .DS_Store
 
 .idea/
+
+# H2 database files
+db/
+*.mv.db
+*.trace.db
+*.lock.db
